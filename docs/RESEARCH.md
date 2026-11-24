@@ -98,7 +98,7 @@ The following are qualitative discovery observations, not delivery estimates or 
 
 The approved P0 baseline spans a loopback web workflow, two framework families, specification intake, trace review, deterministic findings, evidence persistence, JUnit import, an isolated runner, remote-AI consent and redaction, export, and security controls. Their dependencies and interactions require architecture and security decisions before implementation. This is a technical feasibility concern, not a schedule estimate. The SG-03 review's schedule-based conclusion is superseded by the product-owner decision; its technical complexity observations remain open for design and validation.
 
-Known implementation blockers and risk questions include the local request threat model and session proof, supported runner backend and host platform, numeric resource limits, secret classes and redaction failure behavior, provider error/redirect handling, supported criterion grammar, finite analyzer rules, malformed Git/XML boundaries, and unsupported-coverage semantics. Resolve these through SG-03B remediation and M3 design, with acceptance cases and evidence; do not treat their existence as authorization to reduce or reorder scope.
+SG-03B defines the product boundaries for local access, isolation failure, redaction and consent, supported analyzer rules, malformed Git and XML, and unsupported coverage. The [SG-03B assessment](../codex-evidence/review/SG-03B.md#technical-feasibility-and-dependencies) records implementation dependencies and blockers. The [Design decision register](adr/SG-03B-design-decision-register.md) assigns platform selection, enforceable limits and other architecture decisions to M3 with required evidence. Technical feasibility remains open pending that validation.
 
 ## Decisions and questions deferred to later stages
 
@@ -106,13 +106,7 @@ The product owner confirmed on 2026-11-24 that selecting a technical stack, inte
 
 The product owner also confirmed the initial-user and first-target direction: solo developers using coding agents; an existing repository checked against its original specification. These choices are product direction, not interview evidence or user validation.
 
-Decisions to address in the roadmap's Plan and Design stages:
-
-1. Language/framework and the supported repository scope.
-2. Integration point (for example, local workflow, IDE, CI, or pull request).
-3. Example repository and original specification for a demonstration.
-4. Whether LLM-derived candidate links are permitted and what human review is required before evidence is accepted.
-5. Technical dependencies, security boundaries, supported runner contract, and acceptance evidence needed to implement and verify the approved baseline.
+SG-02 set the supported repository stacks, local audit interface and optional reviewer-controlled AI candidate links. The product's implementation stack, controlled example repository and specification, runner contract and supporting architecture remain M3 decisions. See the [PRD](PRD.md) and [Design decision register](adr/SG-03B-design-decision-register.md).
 
 ## Development-baseline update (SG-03A)
 

@@ -19,7 +19,7 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R002-AC01
-        expected: "All 54 requirements and their criterion IDs are available for review with no manual transcription."
+        expected: "All 54 requirements and their 68 criterion IDs are available for review with no manual transcription."
     verification_method: automated_test
     sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
     depends_on: []
@@ -43,7 +43,9 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R004-AC01
-        expected: "Each reference resolves to the original retained input and exact text span."
+        expected: "Each reference resolves to the exact retained bytes and text span of the accepted source."
+      - id: SG-R004-AC02
+        expected: "Before persistence, inspection rejects a specification when a covered secret is detected or mandatory inspection cannot complete. The user receives a sanitized reason and must sanitize and resubmit. Rejected source values do not enter persistent storage, logs, caches, exports, session evidence or remote AI payloads. Inspection does not silently redact and accept the specification or encrypt and retain its original bytes. Successfully accepted specifications retain their exact source bytes. Detection claims are limited to the documented supported classes."
     verification_method: automated_test
     sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
     depends_on: ["SG-R001","SG-R002"]
@@ -54,29 +56,31 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R005-AC01
-        expected: "The existing IDs are preserved and evidence remains attributable to the revision on which it was collected."
+        expected: "Continuing requirement and criterion IDs and semantic revisions are preserved. The changed specification has its own digest, and earlier evidence remains attributable to the baseline and revision on which it was collected."
     verification_method: automated_test
     sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
     depends_on: ["SG-R001","SG-R002"]
   - id: SG-R006
     feature: "Requirement DNA"
     type: functional
-    description: "Flag requirements that need clarification before verification."
+    description: "Record reviewer classifications and rationale for requirements that need clarification before verification."
     priority: P0
     acceptance_criteria:
       - id: SG-R006-AC01
-        expected: "The vague and compound requirements can each be marked needs clarification with a reason. The explicit criterion can proceed to verification."
+        expected: "The vague and compound items show the reviewer-selected reason, rationale and attribution and remain unresolved pending clarification. An empty rationale is rejected. The explicit criterion can proceed to verification."
     verification_method: manual_demonstration
     sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
     depends_on: ["SG-R004"]
   - id: SG-R007
     feature: "Requirement DNA"
     type: functional
-    description: "Require explicit reviewer approval before activating an edit that changes meaning or splits a requirement."
+    description: "Require explicit reviewer classification and approval before activating a semantic change, replacement, split or retirement."
     priority: P0
     acceptance_criteria:
       - id: SG-R007-AC01
-        expected: "Before approval the original baseline governs verification. After approval the revised threshold uses the existing ID and the children have new IDs linked to the retired parent."
+        expected: "Pending or declined changes leave the original baseline active. Approved semantic changes retain continuing IDs, increment affected revisions, and record classification, rationale and reviewer. Affected evidence is stale for the new baseline and remains accessible under the baseline on which it was collected."
+      - id: SG-R007-AC02
+        expected: "Activation requires recorded classification, rationale and reviewer approval. A replacement and split children receive new IDs with predecessor links. Retirements preserve the original records and evidence, remove retired obligations from active verification and prohibit ID reuse."
     verification_method: automated_test
     sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
     depends_on: ["SG-R005","SG-R006"]
@@ -89,7 +93,7 @@ requirements:
       - id: SG-R008-AC01
         expected: "Each fixture artifact appears with its snapshot path and location. The index is built without importing or running application modules."
       - id: SG-R008-AC02
-        expected: "The index identifies unsupported content as outside coverage and still lists the supported artifacts."
+        expected: "Supported-only coverage has no unsupported notices. Partial coverage retains indexed supported artifacts and identifies the unsupported scope. Unsupported-only coverage has an unsupported audit outcome and retains scope diagnostics."
     verification_method: automated_test
     sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
     depends_on: []
@@ -100,7 +104,7 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R009-AC01
-        expected: "The exact matches produce candidate links with their matching signal. The near-match and unrelated reference produce no links."
+        expected: "Each complete case-sensitive ID yields a candidate for that exact ID and records the matched signal and snapshot location. Near matches, embedded IDs, wrong case and unrelated text yield no candidates in the fixture."
     verification_method: automated_test
     sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
     depends_on: ["SG-R005","SG-R008"]
@@ -140,11 +144,13 @@ requirements:
   - id: SG-R013
     feature: "Spec-to-Code Traceability Graph"
     type: functional
-    description: "Offer opt-in AI-generated trace link suggestions for indexed artifacts."
+    description: "Offer opt-in AI trace suggestions for indexed artifacts, with response validation and deterministic and manual fallback."
     priority: P0
     acceptance_criteria:
       - id: SG-R013-AC01
-        expected: "The valid suggestion appears as inferred and awaiting review. The invented path is rejected and no criterion becomes verified."
+        expected: "The valid suggestion appears as inferred and awaiting review. Invalid IDs, paths and locations are rejected with a reason. The response does not change any criterion verdict."
+      - id: SG-R013-AC02
+        expected: "Each failure has a visible reason and yields no usable suggestions or verdict promotion. Prior evidence and verdicts remain accessible. Deterministic and manual verification still work."
     verification_method: manual_demonstration
     sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
     depends_on: ["SG-R008","SG-R011","SG-R039"]
@@ -157,7 +163,7 @@ requirements:
       - id: SG-R014-AC01
         expected: "The existing audit retains the original commit and digest. A new audit identifies changed specification bytes by a different digest."
     verification_method: automated_test
-    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#technical-complexity-and-feasibility-considerations"]
     depends_on: ["SG-R004"]
   - id: SG-R015
     feature: "Evidence Vault"
@@ -166,11 +172,11 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R015-AC01
-        expected: "The valid cases retain their reported outcomes and imported provenance. The malformed report produces an actionable error and adds no results."
+        expected: "Valid cases retain their reported outcomes and imported provenance. Each invalid report is rejected with the affected input and violated rule or limit, adds no results and leaves earlier evidence available."
       - id: SG-R015-AC02
-        expected: "The reference is not fetched and no sentinel content is added to the audit."
+        expected: "Each report is rejected with a visible reason. No local reference or network retrieval occurs, no entities are expanded, and the audit gains no results or sentinel content. Earlier evidence remains available."
     verification_method: automated_test
-    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#technical-complexity-and-feasibility-considerations"]
     depends_on: ["SG-R014"]
   - id: SG-R016
     feature: "Evidence Vault"
@@ -181,7 +187,7 @@ requirements:
       - id: SG-R016-AC01
         expected: "The completed result records the baseline, command arguments, environment identity, start and finish times, exit status, outcome, and sanitized output reference."
     verification_method: automated_test
-    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#technical-complexity-and-feasibility-considerations"]
     depends_on: ["SG-R014","SG-R033","SG-R034","SG-R035"]
   - id: SG-R017
     feature: "Evidence Vault"
@@ -192,18 +198,20 @@ requirements:
       - id: SG-R017-AC01
         expected: "Inspection marks the artifact as altered and excludes it from verification."
     verification_method: automated_test
-    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#technical-complexity-and-feasibility-considerations"]
     depends_on: ["SG-R014"]
   - id: SG-R018
     feature: "Evidence Vault"
     type: functional
-    description: "Export audit evidence as versioned JSON."
+    description: "Export audit evidence and unsupported coverage diagnostics as versioned JSON."
     priority: P0
     acceptance_criteria:
       - id: SG-R018-AC01
-        expected: "A JSON parser can read the version, baseline, requirement and criterion IDs, link provenance, finding, verdict, reason, and evidence references."
+        expected: "Versioned JSON includes the baseline, requirement and criterion IDs, link provenance, finding, verdict, reason, evidence references, coverage scope and any scope notices. Persisted secrets and unreviewed model payloads are excluded."
+      - id: SG-R018-AC02
+        expected: "The JSON coverage status and scope notices agree with the UI, including exportable diagnostics for unsupported-only audits. Unsupported dependence without sufficient independent evidence is unresolved with a scope reason and notice references. Independent supported passing and failing assertions yield verified and failed verdicts respectively. An unaffected criterion follows the normal verdict rules."
     verification_method: automated_test
-    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#technical-complexity-and-feasibility-considerations"]
     depends_on: ["SG-R011","SG-R014","SG-R017","SG-R038"]
   - id: SG-R019
     feature: "Evidence Vault"
@@ -214,7 +222,7 @@ requirements:
       - id: SG-R019-AC01
         expected: "The original baseline, criteria, verdicts, findings, links and available evidence references are retrievable."
     verification_method: manual_demonstration
-    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#technical-complexity-and-feasibility-considerations"]
     depends_on: ["SG-R014","SG-R017"]
   - id: SG-R020
     feature: "Ghost Feature Detector"
@@ -223,7 +231,7 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R020-AC01
-        expected: "Only the stub produces a backend candidate with its rule and source location."
+        expected: "The listed stub routes produce candidates with matching rules and source locations. The implemented route and undecorated helper produce no backend stub candidates."
     verification_method: static_analysis
     sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
     depends_on: ["SG-R008","SG-R014"]
@@ -234,7 +242,7 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R021-AC01
-        expected: "Only the empty handler produces a UI candidate with its rule and source location."
+        expected: "Both explicitly attached empty handlers produce candidates with the rule and source location. The wired action, unattached control and unbound helper produce no empty-handler candidates."
     verification_method: static_analysis
     sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
     depends_on: ["SG-R008","SG-R014"]
@@ -245,7 +253,7 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R022-AC01
-        expected: "Only the marked sample data produces a candidate with its rule and source location."
+        expected: "The explicitly marked literal responses produce canned-response candidates with rule and source location. The unmarked constant and service-derived response produce no candidates under that rule."
     verification_method: static_analysis
     sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
     depends_on: ["SG-R008","SG-R014"]
@@ -256,7 +264,7 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R023-AC01
-        expected: "The candidate is shown as dismissed with its rationale and reviewer attribution, and dismissal does not verify its criterion."
+        expected: "The candidate remains dismissed with its rationale and reviewer attribution. Dismissal neither proves behavior nor changes its criterion verdict."
     verification_method: automated_test
     sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
     depends_on: ["SG-R020","SG-R021","SG-R022"]
@@ -267,7 +275,7 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R024-AC01
-        expected: "The proposed cases include 99, 100, and 101, with expected outcomes derived from the specification."
+        expected: "Drafts cover 99, 100 and 101 for the integer upper bound and 2.49, 2.50 and 2.51 for the decimal lower bound. Expected outcomes reflect each declared bound, its inclusivity and the reviewer-confirmed rule. Each draft references the source criterion revision."
     verification_method: automated_test
     sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
     depends_on: ["SG-R006","SG-R007"]
@@ -278,7 +286,7 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R025-AC01
-        expected: "Proposals include a missing required value and an out-of-domain value, each linked to its source criterion."
+        expected: "Drafts include a valid value, a missing required field, a wrong-type value and a correctly typed value outside the allowed set. Each draft carries the explicit outcome for its condition and references the source criterion revision."
     verification_method: automated_test
     sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
     depends_on: ["SG-R006","SG-R007"]
@@ -289,7 +297,9 @@ requirements:
     priority: P0
     acceptance_criteria:
       - id: SG-R026-AC01
-        expected: "The case set covers the specified allowed transition and an attempt to skip the required review state using synthetic records."
+        expected: "Drafts cover the stated allowed and rejected transitions using synthetic records, the specified outcomes and the source criterion revision. Cases do not infer outcomes for undeclared transitions."
+      - id: SG-R026-AC02
+        expected: "The documented condition generates a draft with the declared trigger, outcome and source criterion revision. The unsupported and underspecified inputs have visible reasons and no generated outcomes. No draft is approved or executed automatically."
     verification_method: automated_test
     sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
     depends_on: ["SG-R006","SG-R007"]
@@ -323,6 +333,8 @@ requirements:
     acceptance_criteria:
       - id: SG-R029-AC01
         expected: "Only the first case has passing execution evidence. The remaining two show distinct unresolved reasons."
+      - id: SG-R029-AC02
+        expected: "The fixture criterion for the omitted field is failed by the current admissible assertion. The separate criterion remains unresolved because the passing report has no matching assertion. The report's original result and provenance remain inspectable."
     verification_method: automated_test
     sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
     depends_on: ["SG-R015","SG-R016","SG-R027","SG-R028"]
@@ -340,22 +352,24 @@ requirements:
   - id: SG-R031
     feature: "Security"
     type: security
-    description: "Restrict the default local audit surface to the local developer."
+    description: "Restrict the default local audit surface to authorized local sessions and browser origins."
     priority: P0
     acceptance_criteria:
       - id: SG-R031-AC01
-        expected: "The service binds to loopback only and each unauthorized request is rejected without a state change."
+        expected: "The service listens only on loopback. The allowed client can access the audit and change state with valid proof. Unauthorized browser origins, authority mismatches and missing or invalid proof are rejected before protected data is disclosed or state changes."
     verification_method: automated_test
     sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
     depends_on: []
   - id: SG-R032
     feature: "Security"
     type: security
-    description: "Constrain repository artifact access to the selected snapshot."
+    description: "Constrain artifact access to the selected Git snapshot and safely reject an unreadable or missing snapshot."
     priority: P0
     acceptance_criteria:
       - id: SG-R032-AC01
         expected: "Each out-of-scope reference is refused and sentinel contents are absent from the audit."
+      - id: SG-R032-AC02
+        expected: "Each invalid snapshot is rejected before activation with the affected commit or object and a reason. The source remains unchanged, no external retrieval occurs, and the earlier audit and its evidence remain available."
     verification_method: automated_test
     sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
     depends_on: []
@@ -373,22 +387,26 @@ requirements:
   - id: SG-R034
     feature: "Security"
     type: security
-    description: "Run approved test commands in disposable isolation."
+    description: "Run approved test commands in disposable isolation and require verified teardown before further execution."
     priority: P0
     acceptance_criteria:
       - id: SG-R034-AC01
-        expected: "The first run is non-privileged, blocks network access, has no host credentials or writable source mount, and is removed afterward. The second run is blocked without launching a host process."
+        expected: "The valid run is non-privileged and disposable, network-blocked, without host credentials or a writable source mount. Teardown is verified. Both setup failures block the command before launch without falling back to a host test process, with a reason and prior evidence preserved."
+      - id: SG-R034-AC02
+        expected: "An unverified teardown records the failure and preserves earlier evidence. A launched run is incomplete. Further execution is blocked across restart until recovery verifies cleanup and a fresh invocation is approved."
     verification_method: automated_test
     sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
     depends_on: ["SG-R032","SG-R033"]
   - id: SG-R035
     feature: "Operational quality"
     type: non_functional
-    description: "Enforce resource limits on isolated test execution."
+    description: "Enforce resource limits on isolated test execution and verify process-tree termination after timeout."
     priority: P0
     acceptance_criteria:
       - id: SG-R035-AC01
-        expected: "The configured limits apply. Overruns stop or truncate as appropriate, produce an incomplete result, and never appear as a pass."
+        expected: "Each configured limit is enforced and recorded. An overrun stops the attempt or truncates output as applicable, yields an incomplete result and never appears as a pass."
+      - id: SG-R035-AC02
+        expected: "The timeout produces an incomplete result after the process tree is terminated and verified absent. Any unverified termination enters the SG-R034-AC02 execution block. Prior evidence remains available."
     verification_method: automated_test
     sources: ["../GOALS.md#development-principles","PRD.md#supported-inputs-and-limits"]
     depends_on: ["SG-R034"]
@@ -417,22 +435,26 @@ requirements:
   - id: SG-R038
     feature: "Security"
     type: security
-    description: "Redact sensitive content from persisted evidence and outbound AI excerpts."
+    description: "Redact sensitive content from persisted evidence and outbound AI excerpts and withhold affected output if redaction or validation fails."
     priority: P0
     acceptance_criteria:
       - id: SG-R038-AC01
-        expected: "The synthetic credentials are absent from persisted outputs, exports, and the provider payload, with redaction recorded."
+        expected: "The covered synthetic secrets are absent from persisted evidence, consent preview, export and outbound payload. Redaction is recorded without revealing the values."
+      - id: SG-R038-AC02
+        expected: "Affected output is withheld wherever safe redaction or validation fails. No affected content is transmitted or retained in evidence, previews, logs or exports. A sanitized reason is visible and prior evidence remains available."
     verification_method: automated_test
     sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
     depends_on: ["SG-R014"]
   - id: SG-R039
     feature: "Security"
     type: security
-    description: "Require per-audit consent for remote AI requests."
+    description: "Require per-audit consent for the exact sanitized remote AI payload and destination and prohibit redirects."
     priority: P0
     acceptance_criteria:
       - id: SG-R039-AC01
-        expected: "Only the approved sanitized payload goes to the displayed destination. A new audit or a change in payload or destination requires fresh consent."
+        expected: "No request is sent when AI is disabled, consent is declined or revoked, or the audit, exact sanitized payload bytes or endpoint differ from the approval. After explicit approval for the current audit, payload and endpoint, only the matching payload reaches the displayed endpoint."
+      - id: SG-R039-AC02
+        expected: "The approved endpoint may receive the approved request. The redirect target receives no request. The audit records a provider failure and retains prior evidence and verdicts."
     verification_method: automated_test
     sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
     depends_on: ["SG-R038"]
@@ -465,7 +487,7 @@ requirements:
     priority: P1
     acceptance_criteria:
       - id: SG-R042-AC01
-        expected: "The screenshot comparison passes and the interaction assertion fails in separate evidence records."
+        expected: "The screenshot comparison passes. The separate interaction assertion fails because the selected value was not persisted. Both outcomes are retained as distinct evidence records."
     verification_method: automated_test
     sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
     depends_on: ["SG-R040","SG-R041"]
