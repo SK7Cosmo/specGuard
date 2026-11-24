@@ -1,0 +1,603 @@
+# Canonical product requirements. Reference paths are relative to this file.
+schema_version: 1
+requirements:
+  - id: SG-R001
+    feature: "Requirement DNA"
+    type: functional
+    description: "Import explicitly structured requirements from UTF-8 Markdown."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R001-AC01
+        expected: "Exactly the two top-level requirement sections are imported in source order with their criteria. The example and comment produce no records."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: []
+  - id: SG-R002
+    feature: "Requirement DNA"
+    type: functional
+    description: "Import requirements from version 1 of the canonical YAML catalog."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R002-AC01
+        expected: "All 54 requirements and their criterion IDs are available for review with no manual transcription."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: []
+  - id: SG-R003
+    feature: "Requirement DNA"
+    type: functional
+    description: "Explain why a specification could not be imported."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R003-AC01
+        expected: "Each rejection identifies the source location or field and the reason. The prior active baseline is still available."
+      - id: SG-R003-AC02
+        expected: "Each input is rejected before activation, with the violated rule or limit identified."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: []
+  - id: SG-R004
+    feature: "Requirement DNA"
+    type: functional
+    description: "Preserve original requirement text and its source location."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R004-AC01
+        expected: "Each reference resolves to the original retained input and exact text span."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: ["SG-R001","SG-R002"]
+  - id: SG-R005
+    feature: "Requirement DNA"
+    type: functional
+    description: "Preserve explicit requirement and criterion identities across specification revisions."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R005-AC01
+        expected: "The existing IDs are preserved and evidence remains attributable to the revision on which it was collected."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: ["SG-R001","SG-R002"]
+  - id: SG-R006
+    feature: "Requirement DNA"
+    type: functional
+    description: "Flag requirements that need clarification before verification."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R006-AC01
+        expected: "The vague and compound requirements can each be marked needs clarification with a reason. The explicit criterion can proceed to verification."
+    verification_method: manual_demonstration
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: ["SG-R004"]
+  - id: SG-R007
+    feature: "Requirement DNA"
+    type: functional
+    description: "Require explicit reviewer approval before activating an edit that changes meaning or splits a requirement."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R007-AC01
+        expected: "Before approval the original baseline governs verification. After approval the revised threshold uses the existing ID and the children have new IDs linked to the retired parent."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: ["SG-R005","SG-R006"]
+  - id: SG-R008
+    feature: "Spec-to-Code Traceability Graph"
+    type: functional
+    description: "Index supported implementation artifacts and test references from a Git snapshot."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R008-AC01
+        expected: "Each fixture artifact appears with its snapshot path and location. The index is built without importing or running application modules."
+      - id: SG-R008-AC02
+        expected: "The index identifies unsupported content as outside coverage and still lists the supported artifacts."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: []
+  - id: SG-R009
+    feature: "Spec-to-Code Traceability Graph"
+    type: functional
+    description: "Propose trace links using deterministic signals."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R009-AC01
+        expected: "The exact matches produce candidate links with their matching signal. The near-match and unrelated reference produce no links."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: ["SG-R005","SG-R008"]
+  - id: SG-R010
+    feature: "Spec-to-Code Traceability Graph"
+    type: functional
+    description: "Allow a reviewer to add a trace link to an indexed artifact."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R010-AC01
+        expected: "Both links persist and reopen at the chosen snapshot locations."
+    verification_method: manual_demonstration
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: ["SG-R005","SG-R008"]
+  - id: SG-R011
+    feature: "Spec-to-Code Traceability Graph"
+    type: functional
+    description: "Expose the provenance and review state of trace links."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R011-AC01
+        expected: "The graph shows the origin, current review state, and reviewer attribution where applicable after reloading."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: ["SG-R009","SG-R010"]
+  - id: SG-R012
+    feature: "Spec-to-Code Traceability Graph"
+    type: functional
+    description: "Expose requirements with no confirmed implementation link."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R012-AC01
+        expected: "The first two requirements appear as unlinked. The third resolves to its confirmed link."
+    verification_method: automated_test
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: ["SG-R011"]
+  - id: SG-R013
+    feature: "Spec-to-Code Traceability Graph"
+    type: functional
+    description: "Offer opt-in AI-generated trace link suggestions for indexed artifacts."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R013-AC01
+        expected: "The valid suggestion appears as inferred and awaiting review. The invented path is rejected and no criterion becomes verified."
+    verification_method: manual_demonstration
+    sources: ["PROBLEM_STATEMENT.md#problem","RESEARCH.md#requirement-traceability-challenges"]
+    depends_on: ["SG-R008","SG-R011","SG-R039"]
+  - id: SG-R014
+    feature: "Evidence Vault"
+    type: functional
+    description: "Bind an audit to the inspected Git commit and specification digest."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R014-AC01
+        expected: "The existing audit retains the original commit and digest. A new audit identifies changed specification bytes by a different digest."
+    verification_method: automated_test
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    depends_on: ["SG-R004"]
+  - id: SG-R015
+    feature: "Evidence Vault"
+    type: functional
+    description: "Import user-supplied JUnit XML as attributed test evidence."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R015-AC01
+        expected: "The valid cases retain their reported outcomes and imported provenance. The malformed report produces an actionable error and adds no results."
+      - id: SG-R015-AC02
+        expected: "The reference is not fetched and no sentinel content is added to the audit."
+    verification_method: automated_test
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    depends_on: ["SG-R014"]
+  - id: SG-R016
+    feature: "Evidence Vault"
+    type: functional
+    description: "Record provenance for an approved locally observed check."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R016-AC01
+        expected: "The completed result records the baseline, command arguments, environment identity, start and finish times, exit status, outcome, and sanitized output reference."
+    verification_method: automated_test
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    depends_on: ["SG-R014","SG-R033","SG-R034","SG-R035"]
+  - id: SG-R017
+    feature: "Evidence Vault"
+    type: functional
+    description: "Detect alterations to persisted evidence artifacts."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R017-AC01
+        expected: "Inspection marks the artifact as altered and excludes it from verification."
+    verification_method: automated_test
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    depends_on: ["SG-R014"]
+  - id: SG-R018
+    feature: "Evidence Vault"
+    type: functional
+    description: "Export audit evidence as versioned JSON."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R018-AC01
+        expected: "A JSON parser can read the version, baseline, requirement and criterion IDs, link provenance, finding, verdict, reason, and evidence references."
+    verification_method: automated_test
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    depends_on: ["SG-R011","SG-R014","SG-R017","SG-R038"]
+  - id: SG-R019
+    feature: "Evidence Vault"
+    type: functional
+    description: "Allow a developer to reopen a completed local audit."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R019-AC01
+        expected: "The original baseline, criteria, verdicts, findings, links and available evidence references are retrievable."
+    verification_method: manual_demonstration
+    sources: ["USER_PERSONAS.md#1-ai-assisted-individual-developer-initial-primary-user","RESEARCH.md#opportunities-and-differentiator-assessment"]
+    depends_on: ["SG-R014","SG-R017"]
+  - id: SG-R020
+    feature: "Ghost Feature Detector"
+    type: functional
+    description: "Flag explicit FastAPI route stubs."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R020-AC01
+        expected: "Only the stub produces a backend candidate with its rule and source location."
+    verification_method: static_analysis
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R008","SG-R014"]
+  - id: SG-R021
+    feature: "Ghost Feature Detector"
+    type: functional
+    description: "Flag empty handlers attached to interactive React controls."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R021-AC01
+        expected: "Only the empty handler produces a UI candidate with its rule and source location."
+    verification_method: static_analysis
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R008","SG-R014"]
+  - id: SG-R022
+    feature: "Ghost Feature Detector"
+    type: functional
+    description: "Flag deterministic indicators of canned responses."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R022-AC01
+        expected: "Only the marked sample data produces a candidate with its rule and source location."
+    verification_method: static_analysis
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R008","SG-R014"]
+  - id: SG-R023
+    feature: "Ghost Feature Detector"
+    type: functional
+    description: "Retain reviewer dismissals of ghost candidates."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R023-AC01
+        expected: "The candidate is shown as dismissed with its rationale and reviewer attribution, and dismissal does not verify its criterion."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R020","SG-R021","SG-R022"]
+  - id: SG-R024
+    feature: "Adversarial Requirement Testing"
+    type: functional
+    description: "Propose boundary cases from confirmed numeric criteria."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R024-AC01
+        expected: "The proposed cases include 99, 100, and 101, with expected outcomes derived from the specification."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R006","SG-R007"]
+  - id: SG-R025
+    feature: "Adversarial Requirement Testing"
+    type: functional
+    description: "Propose invalid-input cases from confirmed input constraints."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R025-AC01
+        expected: "Proposals include a missing required value and an out-of-domain value, each linked to its source criterion."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R006","SG-R007"]
+  - id: SG-R026
+    feature: "Adversarial Requirement Testing"
+    type: functional
+    description: "Propose cases for confirmed business rules or state transitions."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R026-AC01
+        expected: "The case set covers the specified allowed transition and an attempt to skip the required review state using synthetic records."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R006","SG-R007"]
+  - id: SG-R027
+    feature: "Adversarial Requirement Testing"
+    type: functional
+    description: "Require approval of proposed expected outcomes before case adoption."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R027-AC01
+        expected: "The approved case preserves the reviewed expected outcome and reviewer attribution. The draft stays unapproved."
+    verification_method: manual_demonstration
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R024","SG-R025","SG-R026"]
+  - id: SG-R028
+    feature: "Adversarial Requirement Testing"
+    type: functional
+    description: "Link approved cases to executable test references."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R028-AC01
+        expected: "The valid relationship is persisted and browsable. The unknown reference is rejected."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R010","SG-R027"]
+  - id: SG-R029
+    feature: "Adversarial Requirement Testing"
+    type: functional
+    description: "Report approved cases that lack admissible execution evidence."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R029-AC01
+        expected: "Only the first case has passing execution evidence. The remaining two show distinct unresolved reasons."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R015","SG-R016","SG-R027","SG-R028"]
+  - id: SG-R030
+    feature: "Local web audit"
+    type: functional
+    description: "Expose the complete audit journey through a local web interface."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R030-AC01
+        expected: "Each step is available through the interface for the selected audit and the export identifies that audit."
+    verification_method: manual_demonstration
+    sources: ["PRD.md#approved-product-scope"]
+    depends_on: ["SG-R002","SG-R012","SG-R018","SG-R023","SG-R029"]
+  - id: SG-R031
+    feature: "Security"
+    type: security
+    description: "Restrict the default local audit surface to the local developer."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R031-AC01
+        expected: "The service binds to loopback only and each unauthorized request is rejected without a state change."
+    verification_method: automated_test
+    sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
+    depends_on: []
+  - id: SG-R032
+    feature: "Security"
+    type: security
+    description: "Constrain repository artifact access to the selected snapshot."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R032-AC01
+        expected: "Each out-of-scope reference is refused and sentinel contents are absent from the audit."
+    verification_method: automated_test
+    sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
+    depends_on: []
+  - id: SG-R033
+    feature: "Security"
+    type: security
+    description: "Require approval of the exact existing test invocation."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R033-AC01
+        expected: "The approved invocation is eligible to run once. Modified invocations require fresh approval."
+    verification_method: automated_test
+    sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
+    depends_on: ["SG-R014"]
+  - id: SG-R034
+    feature: "Security"
+    type: security
+    description: "Run approved test commands in disposable isolation."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R034-AC01
+        expected: "The first run is non-privileged, blocks network access, has no host credentials or writable source mount, and is removed afterward. The second run is blocked without launching a host process."
+    verification_method: automated_test
+    sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
+    depends_on: ["SG-R032","SG-R033"]
+  - id: SG-R035
+    feature: "Operational quality"
+    type: non_functional
+    description: "Enforce resource limits on isolated test execution."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R035-AC01
+        expected: "The configured limits apply. Overruns stop or truncate as appropriate, produce an incomplete result, and never appear as a pass."
+    verification_method: automated_test
+    sources: ["../GOALS.md#development-principles","PRD.md#supported-inputs-and-limits"]
+    depends_on: ["SG-R034"]
+  - id: SG-R036
+    feature: "Operational quality"
+    type: non_functional
+    description: "Preserve completed audit work when a later operation fails."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R036-AC01
+        expected: "Earlier results and reviewed links remain accessible. The failed step has a reason and can be retried without duplicating earlier evidence."
+    verification_method: automated_test
+    sources: ["../GOALS.md#development-principles","PRD.md#supported-inputs-and-limits"]
+    depends_on: ["SG-R014"]
+  - id: SG-R037
+    feature: "Operational quality"
+    type: non_functional
+    description: "Produce reproducible deterministic findings for identical audit inputs and configuration."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R037-AC01
+        expected: "Stable finding IDs, normalized links, ordering, and criterion verdicts match across runs. Run-specific timestamps and audit IDs may differ."
+    verification_method: automated_test
+    sources: ["../GOALS.md#development-principles","PRD.md#supported-inputs-and-limits"]
+    depends_on: ["SG-R008","SG-R014"]
+  - id: SG-R038
+    feature: "Security"
+    type: security
+    description: "Redact sensitive content from persisted evidence and outbound AI excerpts."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R038-AC01
+        expected: "The synthetic credentials are absent from persisted outputs, exports, and the provider payload, with redaction recorded."
+    verification_method: automated_test
+    sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
+    depends_on: ["SG-R014"]
+  - id: SG-R039
+    feature: "Security"
+    type: security
+    description: "Require per-audit consent for remote AI requests."
+    priority: P0
+    acceptance_criteria:
+      - id: SG-R039-AC01
+        expected: "Only the approved sanitized payload goes to the displayed destination. A new audit or a change in payload or destination requires fresh consent."
+    verification_method: automated_test
+    sources: ["../GOALS.md#development-principles","PRD.md#approved-product-scope"]
+    depends_on: ["SG-R038"]
+  - id: SG-R040
+    feature: "Visual Reality Check"
+    type: functional
+    description: "Capture a rendered UI state from an approved scripted fixture flow."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R040-AC01
+        expected: "The captured screenshot is bound to the baseline, browser, viewport, and named flow step."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R014","SG-R034"]
+  - id: SG-R041
+    feature: "Visual Reality Check"
+    type: functional
+    description: "Compare a UI capture against an approved visual reference."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R041-AC01
+        expected: "Results show within threshold, visual difference, and unresolved with missing reference respectively."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R040"]
+  - id: SG-R042
+    feature: "Visual Reality Check"
+    type: functional
+    description: "Report interaction proof separately from image comparison results."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R042-AC01
+        expected: "The screenshot comparison passes and the interaction assertion fails in separate evidence records."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R040","SG-R041"]
+  - id: SG-R043
+    feature: "Specification Drift Radar"
+    type: functional
+    description: "Identify changed criteria between two specification baselines."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R043-AC01
+        expected: "The comparison identifies additions, edits, and removals by stable ID and omits the unchanged criterion."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R005","SG-R014","SG-R019"]
+  - id: SG-R044
+    feature: "Specification Drift Radar"
+    type: functional
+    description: "Identify changed artifacts with confirmed trace links."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R044-AC01
+        expected: "The linked change and removal appear with their commit references. The unrelated file does not appear as a linked change."
+    verification_method: static_analysis
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R011","SG-R014","SG-R019"]
+  - id: SG-R045
+    feature: "Specification Drift Radar"
+    type: functional
+    description: "Flag links affected by baseline changes for reassessment."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R045-AC01
+        expected: "Only affected links are marked for reassessment and retain their earlier provenance."
+    verification_method: automated_test
+    sources: ["FAILURE_SCENARIOS.md#representative-failure-scenarios"]
+    depends_on: ["SG-R043","SG-R044"]
+  - id: SG-R046
+    feature: "Release Confidence Index"
+    type: functional
+    description: "Report verified criterion coverage with its denominator."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R046-AC01
+        expected: "The report shows 2 of 4 with the status breakdown. An empty baseline shows no applicable coverage."
+    verification_method: automated_test
+    sources: ["USER_PERSONAS.md#4-product-owner-or-engineering-manager"]
+    depends_on: ["SG-R018"]
+  - id: SG-R047
+    feature: "Release Confidence Index"
+    type: functional
+    description: "Expose unresolved P0 criteria in the release summary."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R047-AC01
+        expected: "The P0 criterion appears in the P0 review list with its reason, regardless of the aggregate coverage."
+    verification_method: automated_test
+    sources: ["USER_PERSONAS.md#4-product-owner-or-engineering-manager"]
+    depends_on: ["SG-R046"]
+  - id: SG-R048
+    feature: "Release Confidence Index"
+    type: functional
+    description: "Link each release summary count to its contributing criterion records."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R048-AC01
+        expected: "Each count opens the corresponding criterion set, with the status and its supporting evidence or unresolved reason."
+    verification_method: manual_demonstration
+    sources: ["USER_PERSONAS.md#4-product-owner-or-engineering-manager"]
+    depends_on: ["SG-R046","SG-R047"]
+  - id: SG-R049
+    feature: "Verification Intelligence Console"
+    type: functional
+    description: "Filter findings by feature, priority and verdict."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R049-AC01
+        expected: "The visible findings match all selected filters and clearing filters restores all findings."
+    verification_method: manual_demonstration
+    sources: ["USER_PERSONAS.md#2-small-team-technical-lead-or-reviewer","PRD.md#feature-dependencies-and-priorities"]
+    depends_on: ["SG-R018","SG-R019"]
+  - id: SG-R050
+    feature: "Verification Intelligence Console"
+    type: functional
+    description: "Drill into criterion evidence from a console finding."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R050-AC01
+        expected: "The detail view shows the original criterion, baseline, trace links, and applicable evidence or unresolved reason."
+    verification_method: manual_demonstration
+    sources: ["USER_PERSONAS.md#2-small-team-technical-lead-or-reviewer","PRD.md#feature-dependencies-and-priorities"]
+    depends_on: ["SG-R011","SG-R019","SG-R049"]
+  - id: SG-R051
+    feature: "Verification Intelligence Console"
+    type: functional
+    description: "Compare criterion verdicts across two audits."
+    priority: P1
+    acceptance_criteria:
+      - id: SG-R051-AC01
+        expected: "The comparison identifies the changed verdict and distinguishes the removed criterion from an unresolved one."
+    verification_method: manual_demonstration
+    sources: ["USER_PERSONAS.md#2-small-team-technical-lead-or-reviewer","PRD.md#feature-dependencies-and-priorities"]
+    depends_on: ["SG-R019","SG-R043","SG-R044"]
+  - id: SG-R052
+    feature: "Surgical Repair Engine"
+    type: functional
+    description: "Propose a bounded repair for a confirmed finding."
+    priority: P2
+    acceptance_criteria:
+      - id: SG-R052-AC01
+        expected: "The proposal identifies the affected behavior, criterion, finding and target snapshot, with a scoped repair limited to the product behavior."
+    verification_method: manual_demonstration
+    sources: ["PRD.md#feature-dependencies-and-priorities"]
+    depends_on: ["SG-R011","SG-R023","SG-R029"]
+  - id: SG-R053
+    feature: "Surgical Repair Engine"
+    type: functional
+    description: "Present a reviewable diff without applying it."
+    priority: P2
+    acceptance_criteria:
+      - id: SG-R053-AC01
+        expected: "The proposed diff is inspectable and the working tree is unaffected."
+    verification_method: automated_test
+    sources: ["PRD.md#feature-dependencies-and-priorities"]
+    depends_on: ["SG-R052"]
+  - id: SG-R054
+    feature: "Surgical Repair Engine"
+    type: functional
+    description: "Identify checks for validating a proposed repair after manual application."
+    priority: P2
+    acceptance_criteria:
+      - id: SG-R054-AC01
+        expected: "The proposal lists the mapped acceptance check with its expected result and identifies the product behavior to recheck."
+    verification_method: manual_demonstration
+    sources: ["PRD.md#feature-dependencies-and-priorities"]
+    depends_on: ["SG-R028","SG-R053"]

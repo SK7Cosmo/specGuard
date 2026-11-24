@@ -1,3 +1,3 @@
 # Plan evidence
 
-Capture milestone scope, sequencing, estimates when grounded, dependencies, and risks. Keep plans bounded and update status only after work occurs.
+Capture milestone scope, sequencing, dependencies, and risks. Define deliverable-based acceptance gates and update status only after work occurs. Do not add calendar-based development targets or developer-hour/FTE estimates.
