@@ -8,6 +8,6 @@
 - [SG-04A mandatory-condition disposition](SG-04A-condition-matrix.md): proposed decisions, required proofs, role owners and closure gates for all 12 still-open conditions.
 - [SG-04A deliverables register](SG-04A-deliverables.md): delivered documents, diagrams, ADR boundaries, proof gates and implementation plan.
 
-SG-04D remediation contracts are recorded in §17 of the system architecture and in the SG-04D additions to the data model, API and security documents. The [SG-04D closure report](../../codex-evidence/design/SG-04D-closure.md) reconciles SG-04C findings, requirement traceability, all 12 OPEN gates, feasibility limitations and product-owner decisions. Design status remains proposed pending approval; no gate closure or SG-05 authorization is implied.
+SG-04D remediation contracts are recorded in §17 of the system architecture and in the SG-04D additions to the data model, API and security documents. The [SG-04D closure report](../../codex-evidence/design/SG-04D-closure.md) reconciles SG-04C findings, requirement traceability, all 12 OPEN gates, feasibility limitations and product-owner decisions. SG-04R authorizes the prospective lifecycle policy; the architecture and technology recommendations remain reviewable proposals, and no gate closure or capability activation is implied.
 
 These are Design documents submitted for product-owner approval. Their presence does not close M3 conditions or authorize M4 implementation.

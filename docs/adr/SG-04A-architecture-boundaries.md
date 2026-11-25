@@ -39,3 +39,7 @@ The proposal also makes explicit that imported evidence requires inspected asser
 
 The local session bootstrap/topology (D08), runner platform and numeric limits (D09), provider endpoint/transport policy (D10), and persistence technology/transactions (D11) remain unresolved. D01–D12 remain **OPEN**. This addendum remains proposed for product-owner review and does not authorize SG-05.
 
+## SG-04R lifecycle addendum (2026-11-25)
+
+The SG-04R product-owner-authorized lifecycle decision supersedes the collective rule that all applicable D01–D12 empirical gates must close before any M4 implementation. Relevant approved design contracts permit staged implementation. Each OPEN condition restricts activation of dependent capabilities as defined in the authoritative [mandatory conditions register](SG-03D-m3-mandatory-conditions.md); unrelated work may proceed. All D01–D12 remain OPEN until their designated reviewed evidence is recorded. The SG-04R [preferred implementation decisions](SG-04R-implementation-decisions.md) provide recommendations and proposed numeric defaults for owner review; none establish runtime feasibility or close a gate. This addendum does not authorize a product requirement change or capability activation.
+

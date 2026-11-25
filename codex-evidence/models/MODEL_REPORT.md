@@ -1,68 +1,118 @@
 # Codex development model usage report
 
 This report summarizes **Codex development model usage only**. It does not describe SpecGuard runtime LLM usage.
+Execution counts are record counts; they do not represent token usage, monetary cost, or computational consumption.
 
 ## Recorded activity
 
 | Measure | Count |
 |---|---:|
-| Sessions with available ID | 0 |
-| Records missing session ID | 17 |
-| Task executions | 17 |
-| Malformed or duplicate rows | 0 |
+| Recorded executions | 21 |
+| Distinct tasks | 17 |
+| Known platform sessions | 4 |
+| Missing session IDs | 17 |
+| Retrospective records | 1 |
 
-Task executions count unique, valid `execution_id` records. Sessions count unique available session IDs. Duplicate execution IDs are skipped.
+Lifecycle progression status is unavailable from execution counts and is not inferred.
 
-### Model usage distribution
+## Lifecycle phases
 
-| Value | Count | Distribution |
-|---|---:|---|
-| GPT-6 Luna | 9 | ███████████ (52.9%) |
-| GPT-6.2 Sol | 7 | ████████ (41.2%) |
-| unavailable | 1 | █ (5.9%) |
+| Phase | ID | Recorded executions | Progression status |
+|---|---|---:|---|
+| Understand | P01 | 3 | unavailable |
+| Plan | P02 | 8 | unavailable |
+| Design | P03 | 8 | unavailable |
+| Build | P04 | 2 | unavailable |
+| Test | P05 | 0 | unavailable |
+| Debug & Improve | P06 | 0 | unavailable |
+| Deploy | P07 | 0 | unavailable |
+| Automate | P08 | 0 | unavailable |
 
-### Reasoning effort distribution
+## Model distribution
 
-| Value | Count | Distribution |
-|---|---:|---|
-| High | 13 | ███████████████ (76.5%) |
-| Medium | 3 | ████ (17.6%) |
-| unavailable | 1 | █ (5.9%) |
-
-### Model usage by lifecycle phase
-
-| Lifecycle phase | Task executions | Models used |
-|---|---:|---|
-| automate | 1 | GPT-6 Luna: 1 |
-| design | 4 | GPT-6 Luna: 4 |
-| plan | 1 | GPT-6 Luna: 1 |
-| review | 9 | GPT-6 Luna: 2, GPT-6.2 Sol: 6, unavailable: 1 |
-| specify | 1 | GPT-6.2 Sol: 1 |
-| understand | 1 | GPT-6 Luna: 1 |
-
-### Task completion
-
-| Status | Count |
+| Value | Count |
 |---|---:|
-| complete | 17 |
+| GPT-6 Luna | 11 |
+| GPT-6.2 Astra | 1 |
+| GPT-6.2 Sol | 8 |
+| unavailable | 1 |
 
-Completed: **17 / 17** task executions.
+## Reasoning effort distribution
 
-### Escalations
-
-| Measure | Count |
+| Value | Count |
 |---|---:|
-| Escalations among known values | 0 / 10 |
-| Records missing escalation value | 7 |
+| High | 16 |
+| Medium | 4 |
+| unavailable | 1 |
 
-### Duration and token statistics
+## Activity type distribution
 
-| Measure | Available count | Total | Mean | Missing measurement count |
+| Value | Count |
+|---|---:|
+| architecture | 8 |
+| automation | 1 |
+| implementation | 1 |
+| initialization | 1 |
+| metadata_maintenance | 1 |
+| research | 1 |
+| review | 7 |
+| specification | 1 |
+
+## Execution mode distribution
+
+| Value | Count |
+|---|---:|
+| agent | 1 |
+| default | 10 |
+| plan | 4 |
+| unavailable | 6 |
+
+## Completion status distribution
+
+| Value | Count |
+|---|---:|
+| complete | 20 |
+| partial | 1 |
+
+## Phase by model
+
+| Phase | GPT-6 Luna | GPT-6.2 Astra | GPT-6.2 Sol | unavailable |
 |---|---:|---:|---:|---:|
-| Duration (seconds) | 0 | N/A | N/A | 17 |
-| Input tokens | 0 | N/A | N/A | 17 |
-| Output tokens | 0 | N/A | N/A | 17 |
+| understand | 3 | 0 | 0 | 0 |
+| plan | 2 | 0 | 5 | 1 |
+| design | 5 | 0 | 3 | 0 |
+| build | 1 | 1 | 0 | 0 |
+| test | 0 | 0 | 0 | 0 |
+| debug_improve | 0 | 0 | 0 | 0 |
+| deploy | 0 | 0 | 0 | 0 |
+| automate | 0 | 0 | 0 | 0 |
 
-Missing duration measurements: **17**; missing token measurements: **34** (input and output token fields counted separately).
+## Phase by reasoning effort
 
-Only numeric, non-negative measurements are aggregated. Blank, `N/A`, unavailable, and invalid measurements are not treated as zero.
+| Phase | High | Medium | unavailable |
+|---|---:|---:|---:|
+| understand | 1 | 2 | 0 |
+| plan | 6 | 1 | 1 |
+| design | 8 | 0 | 0 |
+| build | 1 | 1 | 0 |
+| test | 0 | 0 | 0 |
+| debug_improve | 0 | 0 | 0 |
+| deploy | 0 | 0 | 0 |
+| automate | 0 | 0 | 0 |
+
+## Escalations
+
+Known escalation values: 13; escalated: 0; unavailable: 8.
+
+## Resource measurements
+
+| Measure | Available | Missing | Total |
+|---|---:|---:|---:|
+| duration_seconds | 0 | 21 | N/A |
+| input_tokens | 0 | 21 | N/A |
+| output_tokens | 0 | 21 | N/A |
+| resource_usage | 0 | 21 | N/A |
+
+## Timeline records
+
+Chronological execution records are available as structured entries in `MODEL_METRICS.json`; sensitive request content and raw notes are excluded.

@@ -1,0 +1,64 @@
+version: 1
+phases:
+  - {phase_id: P01, lifecycle_phase: understand, display_name: Understand}
+  - {phase_id: P02, lifecycle_phase: plan, display_name: Plan}
+  - {phase_id: P03, lifecycle_phase: design, display_name: Design}
+  - {phase_id: P04, lifecycle_phase: build, display_name: Build}
+  - {phase_id: P05, lifecycle_phase: test, display_name: Test}
+  - {phase_id: P06, lifecycle_phase: debug_improve, display_name: Debug & Improve}
+  - {phase_id: P07, lifecycle_phase: deploy, display_name: Deploy}
+  - {phase_id: P08, lifecycle_phase: automate, display_name: Automate}
+task_mappings:
+  SG-00: P01
+  SG-00B: P01
+  SG-01: P01
+  SG-02: P02
+  SG-03: P02
+  SG-03A: P02
+  SG-03B: P02
+  SG-03C: P02
+  SG-03D: P02
+  SG-04A: P03
+  SG-04B: P03
+  SG-04C: P03
+  SG-04D: P03
+  SG-04E: P03
+  SG-04R: P03
+  SG-05A: P04
+  SG-05A-META: P04
+  SG-05C: P04
+  SG-05D: P04
+  SG-05E: P04
+  SG-05F: P04
+  SG-05G: P04
+  SG-05H: P04
+  SG-05I: P04
+  SG-05J: P05
+  SG-05K: P08
+  SG-05L: P04
+  SG-05M: P04
+  SG-05N: P08
+vocabularies:
+  activity_type:
+    - initialization
+    - research
+    - planning
+    - specification
+    - architecture
+    - feasibility
+    - review
+    - remediation
+    - implementation
+    - testing
+    - documentation
+    - deployment
+    - automation
+    - metadata_maintenance
+  execution_mode:
+    - default
+    - plan
+    - agent
+    - unavailable
+  record_origin:
+    - contemporaneous
+    - retrospective

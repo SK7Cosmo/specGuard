@@ -11,7 +11,7 @@ This proposal keeps the approved local-first audit product: a loopback web appli
 
 The architecture presents evidence and unresolved gaps. It does not certify correctness or make release decisions. Deterministic rules produce reproducible observations. Human review owns interpretation and adoption. AI can propose trace links only; it cannot create evidence, alter a verdict, or approve an action.
 
-This is a design proposal. Parser/library choices, supported runner platform, numeric resource limits, persistence mechanics, detector coverage, and integration feasibility remain subject to the listed proofs. No requirements, priorities, milestones, acceptance criteria, or product-owner decisions are changed here. There is no calendar-based scope reduction.
+This is a design proposal. SG-04R records preferred implementation choices and proposed defaults for parser/library choices, runner platform, numeric resource limits, persistence mechanics, and detector coverage. They remain unverified runtime settings; empirical evidence is still required before activating sensitive capabilities. No requirements, priorities, milestones, acceptance criteria, or product-owner decisions are changed here. There is no calendar-based scope reduction.
 
 ## 2. Context and container architecture
 
@@ -265,28 +265,25 @@ See [SG-04A architecture traceability matrix](SG-04A-architecture-traceability.c
 | API status and error conventions | Typed stable error envelope as proposed | Must preserve safe diagnostics and distinguish malformed, unsupported, blocked and incomplete |
 | Frontend/backend delivery topology | React/Next.js client with local FastAPI service is the approved direction | Packaging, startup, browser-origin details and local updates remain technical design choices |
 
-No claim of feasibility is made for any open dependency. Failure of a proof keeps dependent implementation blocked under the existing register.
+No claim of feasibility is made for any open dependency. Under SG-04R, missing or failed evidence keeps the dependent capability disabled or fail-closed; unrelated implementation may continue.
 
 ## 15. Incremental implementation sequence proposal
 
 This sequence preserves `PLANS.md` and the approved priority order. It describes dependencies, not schedule or authorization:
 
-1. **Complete M3 Design gates (SG-04A and follow-on design evidence):** product-owner review of this proposal; select parser/Git/index/session/storage/runner/provider choices; produce controlled D01–D12 proof plans/results; design pinned fixtures and map every P0 criterion and MVP scenario. Keep all failing/inconclusive dependencies blocked.
-2. **M4 intake and baseline foundation:** local authority, pinned Git read, secret-safe specification intake/parsers, versioned audit persistence, safe rendering, static index. D01, D04, D06, D08 and D11 gates must pass before dependent implementation.
-3. **M4 deterministic trace and findings:** exact-ID candidates, supported-stack indexing, ghost rules, manual review, coverage notices and deterministic IDs. D02, D07 and D12 applicable proofs precede implementation.
-4. **M4 evidence and verdicts:** safe JUnit import, assertion mapping/relevance, integrity/freshness, export/reopen and criterion verdict evaluator. D05, D06, D11 and D12 applicable gates precede evidence affecting verdicts.
-5. **M4 isolated execution and optional AI:** single-use approval, disposable sandbox, limits/recovery, secret redaction and consent-bound provider adapter. D03, D09 and D10 pass before respective components. Keep AI optional and runner failure closed.
-6. **M4 integration and M5 gate:** complete approved P0 workflow and all five MVP scenarios; then record actual evidence for 53 P0 criteria across 39 P0 requirements. Design dry run does not satisfy M5 execution acceptance.
-7. **M6 repeatability:** automate approved deterministic checks and evidence capture, with measured repeatability evidence.
-8. **M7 then M8:** implement and validate all four P1 features, including the separate visual flow, before the P2 Surgical Repair Engine. Do not remove, demote or defer an approved feature to satisfy a date.
+1. **M4 staged implementation:** follow the [SG-04R roadmap](../design/SG-04R-implementation-roadmap.md). Relevant design contracts permit implementation to begin while empirical gates remain OPEN. Build applicable security controls first and keep unverified sensitive capabilities disabled or fail closed.
+2. **Capability activation:** apply each D01–D12 restriction in the [mandatory conditions register](../adr/SG-03D-m3-mandatory-conditions.md). A condition passes only with its designated reviewed evidence. Runner or provider unavailability does not block unrelated components.
+3. **M5 P0 gate:** independently verify all 53 P0 criteria across 39 P0 requirements and all five MVP scenarios. Design checks do not satisfy product acceptance.
+4. **M6 repeatability:** automate approved deterministic checks and evidence capture, with measured repeatability evidence.
+5. **M7 then M8:** implement and validate all 12 P1 criteria across four approved features before the three P2 Surgical Repair Engine criteria. Do not remove, demote or defer an approved feature to satisfy a date.
 
 ## 16. Proposed approval decisions
 
-Product owner review is requested for: (a) the component boundaries and fail-closed lifecycle; (b) the evidence and verdict semantics as a design interpretation of the normative policy; (c) the proposed entity/API/frontend model; (d) the unchanged M3/M4/M5/M6/M7/M8 sequence; and (e) role-level ownership of the 12 proof gates. Approval of this proposal alone does not close any condition, select unproven libraries/platforms, establish feasibility, approve a requirement change, or start SG-05.
+This architecture proposal's remaining technology choices and numeric defaults are recorded for product-owner review in [ADR SG-04R implementation decisions](../adr/SG-04R-implementation-decisions.md). SG-04R authorizes the lifecycle policy change only. Approval of that change does not close any condition, establish feasibility, approve a requirement change, or start SG-05. No protected service, provider dispatch, or repository execution is activated until its applicable evidence is reviewed.
 
 ## 17. SG-04D remediation contracts (approval draft)
 
-This section resolves design-language contradictions and makes previously implicit behaviors reviewable. It does not select unproven libraries, host platforms, numeric limits, session bootstrap secrets, provider destinations, or persistence engines. Those choices and all controlled observations remain subject to the SG-03D gates and product-owner disposition.
+This section resolves design-language contradictions and makes previously implicit behaviors reviewable. SG-04R's preferred choices and proposed defaults are recorded in [ADR SG-04R implementation decisions](../adr/SG-04R-implementation-decisions.md). They are design defaults, not verified runtime settings. Host capability, session, persistence, parser, provider, and runner observations remain subject to the SG-03D gates and applicable product-owner disposition.
 
 ### Baseline and change workflow
 
@@ -298,15 +295,15 @@ Imported result, inspected test/assertion, reviewer mapping, relevance rationale
 
 ### Rule and case contract
 
-An approved rule revision has a typed rule-family discriminator, criterion revision, field identifier/type/domain, exact numeric representation where applicable, jointly evaluated inclusive/exclusive bounds, declared state transitions, and explicit expected outcome for each applicable violation or documented failure. Validation rejects empty/contradictory domains, impossible violations, overlapping rules with incompatible outcomes, stale revisions, and undeclared transitions. A generator emits immutable draft cases with the full rule revision and input identity. A reviewer must approve a draft before execution or verdict use. AI drafts cannot fill missing semantics.
+An approved rule revision has a typed rule-family discriminator, criterion revision, field identifier/type/domain, exact numeric representation where applicable, jointly evaluated inclusive/exclusive bounds, declared state transitions, and explicit expected outcome for each applicable violation or documented failure. Validation rejects empty/contradictory domains, overlapping rules with incompatible outcomes, stale revisions, and undeclared transitions. A violation that is impossible within an otherwise valid field domain is recorded as inapplicable and emits no draft for that violation; it does not invalidate the rule. A generator emits immutable draft cases with the full rule revision and input identity. A reviewer must approve a draft before execution or verdict use. AI drafts cannot fill missing semantics.
 
 ### Analyzer and identifier contract
 
-Criterion IDs are matched as complete tokens, including the `-ACnn` suffix where present; a requirement ID is not emitted as a second candidate from the prefix of a criterion ID. Matching boundaries treat letters, digits, and underscore as identifier characters. Static analyzers operate on syntax-aware Python and TypeScript/TSX representations without importing or executing project modules. Each detector has positive and negative controls, explicit framework/routing support, deterministic normalized output, baseline-bound locations, and an unsupported-scope result. Moved source locations are recalculated for the new pinned baseline; prior records remain attached to their original baseline.
+Criterion IDs are matched as complete tokens, including the `-ACnn` suffix where present; a requirement ID is not emitted as a second candidate from the prefix of a criterion ID. Matching boundaries treat letters, digits, underscore, and hyphen as identifier characters. Static analyzers operate on syntax-aware Python and TypeScript/TSX representations without importing or executing project modules. Each detector has positive and negative controls, explicit framework/routing support, deterministic normalized output, baseline-bound locations, and an unsupported-scope result. Moved source locations are recalculated for the new pinned baseline; prior records remain attached to their original baseline.
 
 ### Runner and operation recovery contract
 
-Runner attempts use durable states `prepared → approval-consumed → launch-intent → running → completed|incomplete|cleanup-blocked → recovered`. Approval consumption is atomic and precedes launch. The approved identity binds the resolved executable or image digest, command/arguments, working directory, environment allowlist, mounts, baseline, policy version, and limits. Concurrent dispatch cannot consume the same approval. If a crash or teardown leaves allocation uncertain, a service-wide execution block survives restart until reconciliation proves no process or writable mount remains; recovery requires fresh approval. Resource values and a supported backend are intentionally unresolved pending D03/D09 feasibility and owner disposition.
+Runner attempts use durable states `prepared → approval-consumed → launch-intent → running → completed|incomplete|cleanup-blocked → recovered`. Approval consumption is atomic and precedes launch. The approved identity binds the resolved executable or image digest, command/arguments, working directory, environment allowlist, mounts, baseline, policy version, and limits. Concurrent dispatch cannot consume the same approval. If a crash or teardown leaves allocation uncertain, a service-wide execution block survives restart until reconciliation proves no process or writable mount remains; recovery requires fresh approval. Preferred backend and proposed resource defaults are in ADR SG-04R implementation decisions; actual host support and effective limits remain unverified under D03/D09.
 
 ### Persistence and idempotency contract
 

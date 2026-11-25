@@ -8,7 +8,7 @@
 | System context/container/component diagrams | `SG-04A-system-architecture.md` Mermaid diagrams | Documented as logical diagrams; trust-boundary implementation remains subject to proof |
 | Verification lifecycle sequence diagram | `SG-04A-system-architecture.md` Mermaid sequence | Documented; includes fail-closed specification intake and separately approved operations |
 | Requirement/criterion architecture traceability | [SG-04A-architecture-traceability.csv](SG-04A-architecture-traceability.csv) | 68 criterion rows cover all 54 requirements; rows cite design sections, existing test-plan cases, applicable gates and unrun validation status |
-| Mandatory condition decision/proof matrix | [SG-04A-condition-matrix.md](SG-04A-condition-matrix.md) and [authoritative register](../adr/SG-03D-m3-mandatory-conditions.md) | Design coverage/status recorded for all 12; every progression gate remains OPEN; role owners are proposed, not assigned |
+| Mandatory condition decision/proof matrix | [SG-04A-condition-matrix.md](SG-04A-condition-matrix.md) and [authoritative register](../adr/SG-03D-m3-mandatory-conditions.md) | Design coverage/status recorded for all 12; every condition remains OPEN and prospective capability restrictions are recorded; role owners are proposed, not assigned |
 | Logical data model and artifact lifecycle | [SG-04A-data-model.md](SG-04A-data-model.md) | Logical records/relationships documented; storage format and D11 validation remain open |
 | API contracts | [SG-04A-api-contracts.md](SG-04A-api-contracts.md) | Proposed `/api/v1` resources, validation and safe errors documented; transport/status details remain review items |
 | Frontend information architecture | `SG-04A-system-architecture.md`, section 11 | Documented; P1 visual flow remains assigned to M7 |
@@ -26,5 +26,5 @@
 
 ## Approval boundary
 
-Product-owner approval of this documentation package is requested. Approval of the documentation plan does not approve each proposed architecture decision. Each mandatory condition remains open until its required controlled evidence is recorded and reviewed. Any changed product requirement or priority requires a separate explicit product-owner decision. M4 implementation remains gated by applicable conditions, and SG-04B/SG-05 work is not part of this submission.
+This SG-04A text records the original Design-package approval boundary. SG-04R authorizes a prospective component-level progression policy: relevant approved design contracts permit implementation to begin, while each mandatory condition remains open until its controlled evidence is recorded and reviewed. Applicable conditions gate capability activation, not unrelated implementation. Approval of the lifecycle change does not approve each proposed technology choice or close a condition; any requirement or priority change still requires a separate explicit product-owner decision. See ADR SG-04R and its roadmap for current progression.
 

@@ -1,0 +1,91 @@
+{
+  "execution_id": "SG-04R-20261125-01",
+  "starting_commit": "4bed4560b8990d11df5a618ef59238829223317a",
+  "status": "PASS",
+  "requirements": 54,
+  "criteria": 68,
+  "requirements_by_priority": {
+    "P0": 39,
+    "P1": 12,
+    "P2": 3
+  },
+  "criteria_by_priority": {
+    "P0": 53,
+    "P1": 12,
+    "P2": 3
+  },
+  "test_plan_case_mappings": 68,
+  "mvp_scenarios": [
+    "MVP-01",
+    "MVP-02",
+    "MVP-03",
+    "MVP-04",
+    "MVP-05"
+  ],
+  "catalog_feature_labels": [
+    "Adversarial Requirement Testing",
+    "Evidence Vault",
+    "Ghost Feature Detector",
+    "Local web audit",
+    "Operational quality",
+    "Release Confidence Index",
+    "Requirement DNA",
+    "Security",
+    "Spec-to-Code Traceability Graph",
+    "Specification Drift Radar",
+    "Surgical Repair Engine",
+    "Verification Intelligence Console",
+    "Visual Reality Check"
+  ],
+  "mandatory_conditions_open": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D12"
+  ],
+  "prospective_activation_rows": 12,
+  "traceability_rows": 68,
+  "d06_sg_r032_ac02_mapping": "D06; D12",
+  "roadmap_tasks": [
+    "SG-05B",
+    "SG-05C",
+    "SG-05D",
+    "SG-05E",
+    "SG-05F",
+    "SG-05G",
+    "SG-05H",
+    "SG-05I",
+    "SG-05J",
+    "SG-05K",
+    "SG-05L",
+    "SG-05M",
+    "SG-05N"
+  ],
+  "roadmap_dependencies_acyclic_by_order": true,
+  "local_markdown_links_checked": 143,
+  "historical_closure_record_unchanged": true,
+  "preserved_historical_evidence_sha256": {
+    "codex-evidence/design/SG-04D-closure.md": "c7cf0767de6f97a8e32b3102dc0a108bd4a7ae34308ef72403abe52d76f4b6d3",
+    "codex-evidence/design/SG-04D-document-check-results.json": "a7b1cbff1def5c1e2031b3986fe3669f0fd4f4431073987c4d90ad156ebc86e0",
+    "codex-evidence/design/SG-04D-contract-check-results.json": "aa71615e2f59d7e38bde78770d4d729b56be3d368348324b0539f050da1f58dc"
+  },
+  "normative_document_sha256": {
+    "docs/PRD.md": "54929cf71dbd49558834ef2296c057e6a4e1b40456b9ca28af6c7b2850493a43",
+    "docs/REQUIREMENTS.yaml": "9d399e0068278a02404707a3de040cc9f18d73479f3421ea7e52544efc21a877",
+    "docs/VERIFICATION_POLICY.md": "9f7b55a71091244ba0bfbc49ff26eb7e6ea7d175e58af7067b79ccb3512b7f29",
+    "docs/TEST_PLAN.md": "ab862b54d3bf41ea6452387c7c1bb1fb7275aa5ab4d1835e32f8ee3134241be2"
+  },
+  "limitations": [
+    "Document, catalog, mapping, and roadmap structure only; no product acceptance or runtime feasibility test.",
+    "Numeric defaults and technology choices are proposed and unverified.",
+    "SG-04E is an untracked input at the starting commit; its evidence file was preserved by leaving it unchanged."
+  ]
+}

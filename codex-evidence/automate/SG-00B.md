@@ -33,3 +33,9 @@ Earlier intermediate runs exposed assertion wording mismatches; assertions were 
 
 The developer confirmed the model and reasoning effort; the existing SG-00B usage record was updated in place, with no duplicate execution record. Session ID, elapsed duration, token counts, and resource usage remain unavailable and are recorded as `N/A`. No controlled model experiment was conducted, so `MODEL_EXPERIMENTS.md` was not changed. No product requirements were changed, and no commit, push, or deployment was performed.
 
+## Current tracking protocol (SG-05A-META)
+
+The canonical lifecycle registry is `../models/LIFECYCLE_REGISTRY.yaml`. It defines P01–P08, the controlled activity, execution-mode and record-origin vocabularies, and task mappings. The ledger now records `phase_id`, `activity_type`, `execution_mode`, and `record_origin`; historical values are populated only from existing notes and evidence. SG-00B's original evidence path and facts remain intact. Its phase was normalized to P01 because the canonical historical mapping places SG-00B in Understand, while this evidence artifact remains under `automate/`.
+
+`python -m scripts.generate_model_report` validates the ledger and generates both `../models/MODEL_REPORT.md` and `../models/MODEL_METRICS.json`. Invalid rows are rejected. The structured report includes every lifecycle phase in registry order, numeric aggregates, matrices and a privacy-limited timeline. Unknown measurements remain unavailable, and execution counts do not represent cost, token consumption or lifecycle completion.
+

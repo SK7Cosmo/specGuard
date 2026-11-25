@@ -1,0 +1,1 @@
+"""SpecGuard local application foundation."""
