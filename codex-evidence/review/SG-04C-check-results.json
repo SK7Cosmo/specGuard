@@ -1,0 +1,84 @@
+{
+  "scope": "independent structural checks, reviewed synthetic harness reproduction and counterexamples; no product acceptance",
+  "python": "3.12.7",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "mistune": "3.4.0",
+    "defusedxml": "0.7.1"
+  },
+  "requirements": 54,
+  "criteria": 68,
+  "requirement_priorities": {
+    "P0": 39,
+    "P1": 12,
+    "P2": 3
+  },
+  "criterion_priorities": {
+    "P0": 53,
+    "P1": 12,
+    "P2": 3
+  },
+  "exact_case_matrix_matches": 68,
+  "catalog_source_paths_resolved": 85,
+  "dependency_graph": "acyclic",
+  "mandatory_gates_open": 12,
+  "reproduced_harness": {
+    "passed": 12,
+    "failed": 0,
+    "matches_stored_result_json": true
+  },
+  "counterexamples": [
+    {
+      "id": "CE01",
+      "input": "SG-R001-AC01",
+      "policy_expected": [
+        "SG-R001-AC01"
+      ],
+      "actual": [],
+      "finding": "F09"
+    },
+    {
+      "id": "CE02",
+      "input": "self-declared invented assertion; no reviewer or observed assertion",
+      "policy_expected": "not sufficient for criterion support",
+      "actual_relevant": true,
+      "finding": "F06"
+    },
+    {
+      "id": "CE03",
+      "input": {
+        "outcome": "passed",
+        "relevant": true,
+        "baseline_current": true,
+        "integrity": "altered",
+        "provenance": "inferred",
+        "reviewed": false
+      },
+      "policy_expected": "unresolved",
+      "actual": "verified",
+      "finding": "F06"
+    },
+    {
+      "id": "CE04",
+      "input": {
+        "criterion_id": "SG-R024-AC01",
+        "rule_type": "numeric_boundary",
+        "source_revision": "rev-999",
+        "expected_outcome": "accept"
+      },
+      "policy_expected": "not an adoptable numeric rule: no actual revision match, field, bound, domain or step",
+      "actual_envelope_accepted": true,
+      "finding": "F08"
+    },
+    {
+      "id": "CE05",
+      "input": "id: SG-R001\nid: SG-R002\n",
+      "policy_expected": "duplicate key rejected by specification intake",
+      "actual_candidate_safe_load": {
+        "id": "SG-R002"
+      },
+      "finding": "F03"
+    }
+  ],
+  "measurement_limits": "No token/cost/session/duration/resource measurements; no service, browser, runner, provider or persistence proof."
+}

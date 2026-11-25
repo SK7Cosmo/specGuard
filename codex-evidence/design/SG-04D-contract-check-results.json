@@ -1,0 +1,139 @@
+{
+  "execution_id": "SG-04D-20261124-01",
+  "task_id": "SG-04D",
+  "starting_commit": "81ff5ff03d1b5ee859f23ed6eb38306df64483d9",
+  "execution_mode": "Default",
+  "session_id": "N/A",
+  "command": "python -B experiments/sg04d/verify_design_contracts.py",
+  "runtime": {
+    "python": "3.12.7",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "inputs": {
+    "harness_sha256": "e125023a2444ec9f766f439d06bed8a338a4cd95a5848fa79121ceeec796a5db",
+    "fixture_sha256": "e97f4945ab2e1a0351735b164969a0568c70cc67167658da5e2586a56e3a8419",
+    "fixture_count": 24
+  },
+  "observations": {
+    "criterion_token_cases": 6,
+    "coverage_admissibility_cases": 18,
+    "all_expected_results_matched": true,
+    "sensitivity_control_detected_defect": true,
+    "status": "PASS"
+  },
+  "coverage_matrix": [
+    {
+      "coverage": "supported",
+      "scenario": "no_evidence",
+      "verdict": "unresolved",
+      "coverage_notice_retained": false
+    },
+    {
+      "coverage": "supported",
+      "scenario": "relevant_pass",
+      "verdict": "verified",
+      "coverage_notice_retained": false
+    },
+    {
+      "coverage": "supported",
+      "scenario": "relevant_fail",
+      "verdict": "failed",
+      "coverage_notice_retained": false
+    },
+    {
+      "coverage": "supported",
+      "scenario": "conflicting_relevant",
+      "verdict": "unresolved",
+      "coverage_notice_retained": false
+    },
+    {
+      "coverage": "supported",
+      "scenario": "unrelated_green",
+      "verdict": "unresolved",
+      "coverage_notice_retained": false
+    },
+    {
+      "coverage": "supported",
+      "scenario": "ai_claim",
+      "verdict": "unresolved",
+      "coverage_notice_retained": false
+    },
+    {
+      "coverage": "partial",
+      "scenario": "no_evidence",
+      "verdict": "unresolved",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "partial",
+      "scenario": "relevant_pass",
+      "verdict": "verified",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "partial",
+      "scenario": "relevant_fail",
+      "verdict": "failed",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "partial",
+      "scenario": "conflicting_relevant",
+      "verdict": "unresolved",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "partial",
+      "scenario": "unrelated_green",
+      "verdict": "unresolved",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "partial",
+      "scenario": "ai_claim",
+      "verdict": "unresolved",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "unsupported",
+      "scenario": "no_evidence",
+      "verdict": "unresolved",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "unsupported",
+      "scenario": "relevant_pass",
+      "verdict": "verified",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "unsupported",
+      "scenario": "relevant_fail",
+      "verdict": "failed",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "unsupported",
+      "scenario": "conflicting_relevant",
+      "verdict": "unresolved",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "unsupported",
+      "scenario": "unrelated_green",
+      "verdict": "unresolved",
+      "coverage_notice_retained": true
+    },
+    {
+      "coverage": "unsupported",
+      "scenario": "ai_claim",
+      "verdict": "unresolved",
+      "coverage_notice_retained": true
+    }
+  ],
+  "limitations": [
+    "Inert synthetic strings and records only; no SpecGuard application code executed.",
+    "Does not establish parser, browser, storage, runner, provider, or integrated feasibility.",
+    "Design-contract checks do not close D05, D07, or D12; all mandatory conditions remain open."
+  ]
+}

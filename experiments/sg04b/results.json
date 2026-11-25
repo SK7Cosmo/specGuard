@@ -1,0 +1,140 @@
+{
+  "failed": 0,
+  "passed": 12,
+  "python": "3.12.7",
+  "results": [
+    {
+      "checks": {
+        "Markdown_accepted_bytes_hash_exact": true,
+        "Markdown_parsed": true,
+        "Markdown_synthetic_secret_scan_clean": true,
+        "YAML_accepted_bytes_hash_exact": true,
+        "YAML_safe_load": true,
+        "YAML_synthetic_secret_scan_clean": true
+      },
+      "experiment": "E01 Markdown/YAML parse and exact source bytes",
+      "note": "PyYAML safe_load and Mistune ran on synthetic text. Byte preservation compares input buffers only; not a persistence proof.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "covered_synthetic_pattern_rejected": true,
+        "diagnostics_do_not_echo_value": true,
+        "inspection_unavailable_fails_closed": true,
+        "rejected_bytes_not_sent_to_sink": true
+      },
+      "experiment": "E02 Synthetic secret rejection and fail-closed gate",
+      "note": "Small pattern demonstrator only; does not validate supported-class coverage or real storage/log/cache/export/provider surfaces.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "Python_symbol_path_line": true,
+        "React_symbols_path_line": true,
+        "repeat_index_deterministic": true
+      },
+      "experiment": "E03 Python and React/Next source indexing",
+      "note": "Python AST and a TSX lexical recognizer indexed synthetic source only. The TSX recognizer is not a language parser.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "exact_ids_only": true,
+        "locator_repeats_on_unchanged_fixture": true,
+        "test_reference_has_exact_case_id": true
+      },
+      "experiment": "E04 Stable requirement/code/test references",
+      "note": "Checks stable identifiers and unchanged path/line values for one fixture; no index revision, rename, move, or persistence migration tested.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "DTD_entity_rejected": true,
+        "different_baseline_irrelevant": true,
+        "matching_assertion_relevant": true,
+        "provenance_digest_recorded": true,
+        "valid_report_parsed": true
+      },
+      "experiment": "E05 Imported JUnit parsing, provenance and relevance",
+      "note": "defusedxml rejected the synthetic DTD fixture. Report identity and relevance were constructed in memory, not persisted or reviewer-approved.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "case_1": true,
+        "case_2": true,
+        "case_3": true,
+        "case_4": true,
+        "case_5": true
+      },
+      "experiment": "E06 Deterministic verdict calculation",
+      "note": "Pure reducer with synthetic evidence only. This tests a proposed table, not the product evaluator or full policy precedence.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "explicit_route_stub_candidate": true,
+        "intentional_noop_control_would_be_flagged": true,
+        "potential_false_positive_is_reviewable_candidate": true,
+        "undecorated_helper_not_a_route_stub": true
+      },
+      "experiment": "E07 Ghost implementation rules and candidate false positive",
+      "note": "The decorative no-op handler demonstrates a known ambiguity; these regex checks are deliberately not promoted to verdicts.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "draft_is_not_approval_or_verdict": true,
+        "extra_instruction_field_rejected": true,
+        "path_like_unknown_criterion_rejected": true,
+        "valid_typed_draft_accepted": true
+      },
+      "experiment": "E08 Adversarial proposal boundary validation",
+      "note": "Validator saw hand-authored hostile JSON; no model generated it. Adversarial model behavior remains untested.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "markup_encoded_as_text": true,
+        "raw_script_tag_absent": true,
+        "source_not_modified": true
+      },
+      "experiment": "E09 Untrusted text rendering primitive",
+      "note": "stdlib escaping only; no React rendering, browser navigation, CSP, Markdown sanitizer, or interaction was exercised.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "changed_invocation_denied": true,
+        "first_matching_attempt_authorized": true,
+        "no_command_executed": true,
+        "replay_denied": true
+      },
+      "experiment": "E10 Single-use approval state sketch",
+      "note": "In-memory state transition only; no service, concurrency, durable restart, runner, or failure-recovery proof.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "all_P0_criteria_have_matrix_rows": true,
+        "catalog_has_53_P0_criteria": true,
+        "each_P0_row_maps_case_id": true
+      },
+      "experiment": "E11 P0 design mapping inventory",
+      "note": "This only checks the existing traceability table. No integrated fixture was selected and no 53-case design dry run or independent oracle review was performed.",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "approved_payload_excludes_synthetic_value": true,
+        "approved_payload_redacts_synthetic_password": true,
+        "exact_bytes_can_be_bound_by_digest": true,
+        "no_consent_yields_no_payload": true
+      },
+      "experiment": "E12 Consent and secret-safe payload construction sketch",
+      "note": "Pure function only. No consent UI, revocation race, endpoint allowlist, outbound request, redirect, timeout, or provider capture was tested.",
+      "status": "PASS"
+    }
+  ],
+  "scope": "synthetic proof sketches only; not production or real-world feasibility certification"
+}

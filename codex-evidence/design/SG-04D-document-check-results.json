@@ -1,0 +1,28 @@
+{
+  "execution_id": "SG-04D-20261124-01",
+  "task_id": "SG-04D",
+  "starting_commit": "81ff5ff03d1b5ee859f23ed6eb38306df64483d9",
+  "command": "python -B experiments/sg04d/verify_document_closure.py",
+  "runtime": {
+    "python": "3.12.7",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "harness_sha256": "7ddd36191f6e29d41ea6c3d251585d63c32b46145309178fdf526826d741eb93",
+  "observations": {
+    "requirements": 54,
+    "criteria": 68,
+    "exact_test_plan_case_mappings": 68,
+    "traceability_rows": 68,
+    "condition_gates": 12,
+    "all_gates_open": true,
+    "findings_in_closure_report": 14,
+    "contract_result_matches_harness": true,
+    "contract_token_cases": 6,
+    "contract_admissibility_cases": 18,
+    "status": "PASS"
+  },
+  "limitations": [
+    "Documentation, traceability, and evidence-integrity structure only.",
+    "Does not validate product behavior, implementation feasibility, or security controls."
+  ]
+}
