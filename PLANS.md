@@ -33,6 +33,10 @@ Use `Phase NN | STAGE | SESSION-ID | Session Title` for new sessions. Phase numb
 
 The model usage ledger stores the canonical lowercase values `understand`, `plan`, `design`, `build`, `test`, `debug_improve`, `deploy`, and `automate`, paired with `P01` through `P08` in order. The validated ledger produces both `codex-evidence/models/MODEL_REPORT.md` and `codex-evidence/models/MODEL_METRICS.json`; execution totals do not establish lifecycle or milestone completion.
 
+## Vercel readiness constraint
+
+Vercel is a forward-looking deployment target. Maintain separate Local Engineering Mode and Hosted Demo Mode profiles; do not weaken the approved local loopback, SQLite, authority, or capability-gating controls. Hosted demos are limited to separately approved, sanitized analytics, synthetic data, and explicitly authorized hosted capabilities. Public protected product access, remote repository access, external persistence, and remote workload execution are not authorized by this constraint. The capability compatibility register, known conflicts, and approval gaps are recorded in [SG-05A Vercel deployment readiness](docs/adr/SG-05A-vercel-readiness.md). Each later task must record its profile implications and check relevant platform constraints early.
+
 SG-04F0–F8 and SG-04G were proposals only. The SG-05 work packages retain the verification, review and automation activities assigned by the roadmap.
 
 ## SG-02 product baseline

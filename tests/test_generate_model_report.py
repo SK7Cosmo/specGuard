@@ -6,7 +6,7 @@ from pathlib import Path
 
 from scripts.generate_model_report import (
     LEDGER_COLUMNS, build_metrics, generate_report, load_registry, migrate_csv,
-    normalize_records, read_ledger, validate_records,
+    normalize_records, read_ledger, serialize_metrics, validate_records, write_metrics,
 )
 
 
@@ -98,6 +98,23 @@ class ModelReportTests(unittest.TestCase):
         metrics = build_metrics([row(escalation="yes", escalation_outcome="approved")], self.registry)
         self.assertEqual(metrics["escalation"]["outcome_distribution"], {"approved": 1})
         self.assertEqual(metrics["metadata_completeness"]["activity_type"], {"available_count": 1, "missing_count": 0})
+
+    def test_versioned_public_json_is_safe_and_written_to_static_frontend_artifact(self):
+        record = row(execution_id="private-execution", session_id="private-session-token",
+                     notes="private request note", task_scope="private task scope")
+        metrics = build_metrics([record], self.registry)
+        payload = serialize_metrics(metrics)
+        self.assertEqual(metrics["schema_name"], "specguard-model-metrics")
+        self.assertEqual(metrics["schema_version"], 1)
+        self.assertNotIn("private-execution", payload)
+        self.assertNotIn("private-session-token", payload)
+        self.assertNotIn("private request note", payload)
+        self.assertNotIn("private task scope", payload)
+        self.assertTrue(all("execution_id" not in entry and "session_id" not in entry for entry in metrics["timeline"]))
+        canonical, frontend = self.root / "MODEL_METRICS.json", self.root / "public/analytics/model-metrics.json"
+        write_metrics(metrics, canonical, frontend)
+        self.assertEqual(canonical.read_bytes(), frontend.read_bytes())
+        self.assertEqual(json.loads(frontend.read_text())["schema_version"], 1)
 
     def test_invalid_vocab_status_measurement_and_identifiers_rejected(self):
         cases = [

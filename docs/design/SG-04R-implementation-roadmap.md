@@ -14,6 +14,7 @@ The active sequence begins with SG-05A, followed by SG-05C through SG-05N. SG-05
 - An unavailable runner, provider, browser, or other optional environment does not block unrelated deterministic, manual, import, schema, or documentation work.
 - Existing criterion outcomes and test methods in [TEST_PLAN.md](../TEST_PLAN.md) are the acceptance oracle. No task can claim the P0 MVP complete before SG-05J passes all 53 P0 criteria, all five MVP scenarios, and applicable gates.
 - Preserve P1 and P2 priorities. Regression and documentation tasks do not substitute for product acceptance.
+- Record each task's Local Engineering and Hosted Demo compatibility implications, environment-specific persistence/authority/process assumptions, dependency changes, hosted capability restrictions, and relevant build checks. Use the [SG-05A Vercel compatibility register](../adr/SG-05A-vercel-readiness.md); do not activate or expose a hosted capability without its design and gate approvals.
 
 ## Sessions
 

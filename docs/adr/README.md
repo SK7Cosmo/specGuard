@@ -13,3 +13,4 @@ Store one decision per file. Suggested naming: `NNNN-short-title.md`.
 - [SG-04R preferred implementation decisions](SG-04R-implementation-decisions.md) records technology choices and proposed, unverified numeric defaults for product-owner review.
 
 - [SG-05A controlled local foundation](SG-05A-local-foundation.md) records the owner-approved session policy, migration scope and testing restrictions.
+- [SG-05A-META Vercel deployment readiness](SG-05A-vercel-readiness.md) records separate local and hosted-demo profiles, a compatibility register, the sanitized static analytics contract, platform constraints, and approvals still required. It does not authorize hosted protected access or deployment.

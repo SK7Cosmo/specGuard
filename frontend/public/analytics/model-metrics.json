@@ -1,0 +1,541 @@
+{
+  "activity_type_distribution": {
+    "architecture": 9,
+    "automation": 1,
+    "implementation": 1,
+    "initialization": 1,
+    "metadata_maintenance": 1,
+    "research": 1,
+    "review": 7,
+    "specification": 1
+  },
+  "completion_status_distribution": {
+    "complete": 21,
+    "partial": 1
+  },
+  "contemporaneous_record_count": 21,
+  "distinct_task_count": 17,
+  "escalation": {
+    "escalated_count": 0,
+    "known_count": 14,
+    "missing_count": 8,
+    "outcome_distribution": {}
+  },
+  "execution_mode_distribution": {
+    "agent": 1,
+    "default": 11,
+    "plan": 4,
+    "unavailable": 6
+  },
+  "known_platform_session_count": 4,
+  "lifecycle_progression_status": "unavailable: execution records do not establish milestone completion",
+  "metadata_completeness": {
+    "activity_type": {
+      "available_count": 22,
+      "missing_count": 0
+    },
+    "completion_status": {
+      "available_count": 22,
+      "missing_count": 0
+    },
+    "duration_seconds": {
+      "available_count": 0,
+      "missing_count": 22
+    },
+    "execution_mode": {
+      "available_count": 16,
+      "missing_count": 6
+    },
+    "input_tokens": {
+      "available_count": 0,
+      "missing_count": 22
+    },
+    "model": {
+      "available_count": 21,
+      "missing_count": 1
+    },
+    "output_tokens": {
+      "available_count": 0,
+      "missing_count": 22
+    },
+    "phase_id": {
+      "available_count": 22,
+      "missing_count": 0
+    },
+    "reasoning_effort": {
+      "available_count": 21,
+      "missing_count": 1
+    },
+    "record_origin": {
+      "available_count": 22,
+      "missing_count": 0
+    },
+    "resource_usage": {
+      "available_count": 0,
+      "missing_count": 22
+    },
+    "session_id": {
+      "available_count": 5,
+      "missing_count": 17
+    }
+  },
+  "missing_session_id_count": 17,
+  "model_distribution": {
+    "GPT-6 Luna": 12,
+    "GPT-6.2 Astra": 1,
+    "GPT-6.2 Sol": 8,
+    "unavailable": 1
+  },
+  "phase_by_model": {
+    "automate": {
+      "GPT-6 Luna": 0,
+      "GPT-6.2 Astra": 0,
+      "GPT-6.2 Sol": 0,
+      "unavailable": 0
+    },
+    "build": {
+      "GPT-6 Luna": 2,
+      "GPT-6.2 Astra": 1,
+      "GPT-6.2 Sol": 0,
+      "unavailable": 0
+    },
+    "debug_improve": {
+      "GPT-6 Luna": 0,
+      "GPT-6.2 Astra": 0,
+      "GPT-6.2 Sol": 0,
+      "unavailable": 0
+    },
+    "deploy": {
+      "GPT-6 Luna": 0,
+      "GPT-6.2 Astra": 0,
+      "GPT-6.2 Sol": 0,
+      "unavailable": 0
+    },
+    "design": {
+      "GPT-6 Luna": 5,
+      "GPT-6.2 Astra": 0,
+      "GPT-6.2 Sol": 3,
+      "unavailable": 0
+    },
+    "plan": {
+      "GPT-6 Luna": 2,
+      "GPT-6.2 Astra": 0,
+      "GPT-6.2 Sol": 5,
+      "unavailable": 1
+    },
+    "test": {
+      "GPT-6 Luna": 0,
+      "GPT-6.2 Astra": 0,
+      "GPT-6.2 Sol": 0,
+      "unavailable": 0
+    },
+    "understand": {
+      "GPT-6 Luna": 3,
+      "GPT-6.2 Astra": 0,
+      "GPT-6.2 Sol": 0,
+      "unavailable": 0
+    }
+  },
+  "phase_by_reasoning_effort": {
+    "automate": {
+      "High": 0,
+      "Medium": 0,
+      "unavailable": 0
+    },
+    "build": {
+      "High": 1,
+      "Medium": 2,
+      "unavailable": 0
+    },
+    "debug_improve": {
+      "High": 0,
+      "Medium": 0,
+      "unavailable": 0
+    },
+    "deploy": {
+      "High": 0,
+      "Medium": 0,
+      "unavailable": 0
+    },
+    "design": {
+      "High": 8,
+      "Medium": 0,
+      "unavailable": 0
+    },
+    "plan": {
+      "High": 6,
+      "Medium": 1,
+      "unavailable": 1
+    },
+    "test": {
+      "High": 0,
+      "Medium": 0,
+      "unavailable": 0
+    },
+    "understand": {
+      "High": 1,
+      "Medium": 2,
+      "unavailable": 0
+    }
+  },
+  "phases": [
+    {
+      "display_name": "Understand",
+      "lifecycle_phase": "understand",
+      "phase_id": "P01",
+      "progression_status": "unavailable",
+      "recorded_execution_count": 3
+    },
+    {
+      "display_name": "Plan",
+      "lifecycle_phase": "plan",
+      "phase_id": "P02",
+      "progression_status": "unavailable",
+      "recorded_execution_count": 8
+    },
+    {
+      "display_name": "Design",
+      "lifecycle_phase": "design",
+      "phase_id": "P03",
+      "progression_status": "unavailable",
+      "recorded_execution_count": 8
+    },
+    {
+      "display_name": "Build",
+      "lifecycle_phase": "build",
+      "phase_id": "P04",
+      "progression_status": "unavailable",
+      "recorded_execution_count": 3
+    },
+    {
+      "display_name": "Test",
+      "lifecycle_phase": "test",
+      "phase_id": "P05",
+      "progression_status": "unavailable",
+      "recorded_execution_count": 0
+    },
+    {
+      "display_name": "Debug & Improve",
+      "lifecycle_phase": "debug_improve",
+      "phase_id": "P06",
+      "progression_status": "unavailable",
+      "recorded_execution_count": 0
+    },
+    {
+      "display_name": "Deploy",
+      "lifecycle_phase": "deploy",
+      "phase_id": "P07",
+      "progression_status": "unavailable",
+      "recorded_execution_count": 0
+    },
+    {
+      "display_name": "Automate",
+      "lifecycle_phase": "automate",
+      "phase_id": "P08",
+      "progression_status": "unavailable",
+      "recorded_execution_count": 0
+    }
+  ],
+  "reasoning_effort_distribution": {
+    "High": 16,
+    "Medium": 5,
+    "unavailable": 1
+  },
+  "recorded_execution_count": 22,
+  "resources": {
+    "duration_seconds": {
+      "available_count": 0,
+      "missing_count": 22,
+      "total": null,
+      "values": []
+    },
+    "input_tokens": {
+      "available_count": 0,
+      "missing_count": 22,
+      "total": null,
+      "values": []
+    },
+    "output_tokens": {
+      "available_count": 0,
+      "missing_count": 22,
+      "total": null,
+      "values": []
+    },
+    "resource_usage": {
+      "available_count": 0,
+      "missing_count": 22,
+      "total": null,
+      "values": []
+    }
+  },
+  "retrospective_record_count": 1,
+  "schema_name": "specguard-model-metrics",
+  "schema_version": 1,
+  "scope": "Codex development model evidence; execution count is not token usage, cost, or computational consumption",
+  "timeline": [
+    {
+      "activity_type": "initialization",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "unavailable",
+      "lifecycle_phase": "understand",
+      "model": "GPT-6 Luna",
+      "phase_id": "P01",
+      "reasoning_effort": "Medium",
+      "sequence": 1,
+      "task_id": "SG-00"
+    },
+    {
+      "activity_type": "automation",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "unavailable",
+      "lifecycle_phase": "understand",
+      "model": "GPT-6 Luna",
+      "phase_id": "P01",
+      "reasoning_effort": "Medium",
+      "sequence": 2,
+      "task_id": "SG-00B"
+    },
+    {
+      "activity_type": "research",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "plan",
+      "lifecycle_phase": "understand",
+      "model": "GPT-6 Luna",
+      "phase_id": "P01",
+      "reasoning_effort": "High",
+      "sequence": 3,
+      "task_id": "SG-01"
+    },
+    {
+      "activity_type": "specification",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "plan",
+      "lifecycle_phase": "plan",
+      "model": "GPT-6.2 Sol",
+      "phase_id": "P02",
+      "reasoning_effort": "Medium",
+      "sequence": 4,
+      "task_id": "SG-02"
+    },
+    {
+      "activity_type": "review",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "unavailable",
+      "lifecycle_phase": "plan",
+      "model": "unavailable",
+      "phase_id": "P02",
+      "reasoning_effort": "unavailable",
+      "sequence": 5,
+      "task_id": "SG-03"
+    },
+    {
+      "activity_type": "review",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "agent",
+      "lifecycle_phase": "plan",
+      "model": "GPT-6 Luna",
+      "phase_id": "P02",
+      "reasoning_effort": "High",
+      "sequence": 6,
+      "task_id": "SG-03A"
+    },
+    {
+      "activity_type": "review",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "plan",
+      "lifecycle_phase": "plan",
+      "model": "GPT-6.2 Sol",
+      "phase_id": "P02",
+      "reasoning_effort": "High",
+      "sequence": 7,
+      "task_id": "SG-03B"
+    },
+    {
+      "activity_type": "review",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "default",
+      "lifecycle_phase": "plan",
+      "model": "GPT-6.2 Sol",
+      "phase_id": "P02",
+      "reasoning_effort": "High",
+      "sequence": 8,
+      "task_id": "SG-03B"
+    },
+    {
+      "activity_type": "review",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "plan",
+      "lifecycle_phase": "plan",
+      "model": "GPT-6.2 Sol",
+      "phase_id": "P02",
+      "reasoning_effort": "High",
+      "sequence": 9,
+      "task_id": "SG-03C"
+    },
+    {
+      "activity_type": "review",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "default",
+      "lifecycle_phase": "plan",
+      "model": "GPT-6.2 Sol",
+      "phase_id": "P02",
+      "reasoning_effort": "High",
+      "sequence": 10,
+      "task_id": "SG-03C"
+    },
+    {
+      "activity_type": "review",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "default",
+      "lifecycle_phase": "plan",
+      "model": "GPT-6 Luna",
+      "phase_id": "P02",
+      "reasoning_effort": "High",
+      "sequence": 11,
+      "task_id": "SG-03D"
+    },
+    {
+      "activity_type": "architecture",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "unavailable",
+      "lifecycle_phase": "design",
+      "model": "GPT-6 Luna",
+      "phase_id": "P03",
+      "reasoning_effort": "High",
+      "sequence": 12,
+      "task_id": "SG-04A"
+    },
+    {
+      "activity_type": "architecture",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "unavailable",
+      "lifecycle_phase": "design",
+      "model": "GPT-6 Luna",
+      "phase_id": "P03",
+      "reasoning_effort": "High",
+      "sequence": 13,
+      "task_id": "SG-04A"
+    },
+    {
+      "activity_type": "architecture",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "unavailable",
+      "lifecycle_phase": "design",
+      "model": "GPT-6 Luna",
+      "phase_id": "P03",
+      "reasoning_effort": "High",
+      "sequence": 14,
+      "task_id": "SG-04B"
+    },
+    {
+      "activity_type": "architecture",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "default",
+      "lifecycle_phase": "design",
+      "model": "GPT-6.2 Sol",
+      "phase_id": "P03",
+      "reasoning_effort": "High",
+      "sequence": 15,
+      "task_id": "SG-04C"
+    },
+    {
+      "activity_type": "architecture",
+      "completion_status": "complete",
+      "date": "2026-11-24",
+      "execution_mode": "default",
+      "lifecycle_phase": "design",
+      "model": "GPT-6.2 Sol",
+      "phase_id": "P03",
+      "reasoning_effort": "High",
+      "sequence": 16,
+      "task_id": "SG-04C"
+    },
+    {
+      "activity_type": "architecture",
+      "completion_status": "complete",
+      "date": "2026-11-25",
+      "execution_mode": "default",
+      "lifecycle_phase": "design",
+      "model": "GPT-6 Luna",
+      "phase_id": "P03",
+      "reasoning_effort": "High",
+      "sequence": 17,
+      "task_id": "SG-04D"
+    },
+    {
+      "activity_type": "architecture",
+      "completion_status": "complete",
+      "date": "2026-11-25",
+      "execution_mode": "default",
+      "lifecycle_phase": "design",
+      "model": "GPT-6.2 Sol",
+      "phase_id": "P03",
+      "reasoning_effort": "High",
+      "sequence": 18,
+      "task_id": "SG-04E"
+    },
+    {
+      "activity_type": "architecture",
+      "completion_status": "complete",
+      "date": "2026-11-25",
+      "execution_mode": "default",
+      "lifecycle_phase": "design",
+      "model": "GPT-6 Luna",
+      "phase_id": "P03",
+      "reasoning_effort": "High",
+      "sequence": 19,
+      "task_id": "SG-04R"
+    },
+    {
+      "activity_type": "implementation",
+      "completion_status": "partial",
+      "date": "2026-11-25",
+      "execution_mode": "default",
+      "lifecycle_phase": "build",
+      "model": "GPT-6.2 Astra",
+      "phase_id": "P04",
+      "reasoning_effort": "High",
+      "sequence": 20,
+      "task_id": "SG-05A"
+    },
+    {
+      "activity_type": "metadata_maintenance",
+      "completion_status": "complete",
+      "date": "2026-11-25",
+      "execution_mode": "default",
+      "lifecycle_phase": "build",
+      "model": "GPT-6 Luna",
+      "phase_id": "P04",
+      "reasoning_effort": "Medium",
+      "sequence": 21,
+      "task_id": "SG-05A-META"
+    },
+    {
+      "activity_type": "architecture",
+      "completion_status": "complete",
+      "date": "2026-11-27",
+      "execution_mode": "default",
+      "lifecycle_phase": "build",
+      "model": "GPT-6 Luna",
+      "phase_id": "P04",
+      "reasoning_effort": "Medium",
+      "sequence": 22,
+      "task_id": "SG-05A-META"
+    }
+  ]
+}

@@ -16,6 +16,7 @@ DEFAULT_CSV = ROOT / "codex-evidence" / "models" / "MODEL_USAGE.csv"
 DEFAULT_REGISTRY = ROOT / "codex-evidence" / "models" / "LIFECYCLE_REGISTRY.yaml"
 DEFAULT_REPORT = ROOT / "codex-evidence" / "models" / "MODEL_REPORT.md"
 DEFAULT_METRICS = ROOT / "codex-evidence" / "models" / "MODEL_METRICS.json"
+DEFAULT_FRONTEND_METRICS = ROOT / "frontend" / "public" / "analytics" / "model-metrics.json"
 REQUIRED_COLUMNS = {
     "date", "lifecycle_phase", "phase_id", "activity_type", "execution_mode", "record_origin",
     "task_id", "execution_id", "session_id", "model", "reasoning_effort", "completion_status",
@@ -208,7 +209,10 @@ def build_metrics(rows: list[dict[str, str]], registry: dict) -> dict:
         resources[field] = {"available_count": len(present), "missing_count": len(rows)-len(present),
                             "total": sum(number(v) for v, _ in present) if present else None,
                             "values": [number(v) for v, _ in present]}
+    ordered_rows = sorted(rows, key=lambda r: (r["date"], r["execution_id"]))
     return {
+        "schema_name": "specguard-model-metrics",
+        "schema_version": 1,
         "scope": "Codex development model evidence; execution count is not token usage, cost, or computational consumption",
         "recorded_execution_count": len(rows), "distinct_task_count": len({r["task_id"] for r in rows}),
         "known_platform_session_count": len(sessions), "missing_session_id_count": sum(not available(r.get("session_id")) for r in rows),
@@ -226,12 +230,12 @@ def build_metrics(rows: list[dict[str, str]], registry: dict) -> dict:
                        "outcome_distribution": _distribution([r.get("escalation_outcome", "").strip() or "unavailable" for r in rows
                                                               if r.get("escalation", "").casefold() in {"yes", "true", "1"}])},
         "resources": resources,
-        "timeline": [{"date": r["date"], "phase_id": r["phase_id"], "lifecycle_phase": r["lifecycle_phase"],
-                      "task_id": r["task_id"], "execution_id": r["execution_id"], "session_id_known": available(r.get("session_id")),
+        "timeline": [{"sequence": index, "date": r["date"], "phase_id": r["phase_id"], "lifecycle_phase": r["lifecycle_phase"],
+                      "task_id": r["task_id"],
                       "model": (r.get("model") or "").strip() or "unavailable", "reasoning_effort": (r.get("reasoning_effort") or "").strip() or "unavailable",
                       "activity_type": r["activity_type"], "execution_mode": r["execution_mode"],
-                      "record_origin": r["record_origin"], "completion_status": r["completion_status"].casefold()}
-                     for r in sorted(rows, key=lambda r: (r["date"], r["execution_id"]))],
+                      "completion_status": r["completion_status"].casefold()}
+                     for index, r in enumerate(ordered_rows, 1)],
         "retrospective_record_count": sum(r["record_origin"] == "retrospective" for r in rows),
         "contemporaneous_record_count": sum(r["record_origin"] == "contemporaneous" for r in rows),
         "metadata_completeness": {field: {"available_count": sum(available(r.get(field)) for r in rows),
@@ -243,6 +247,7 @@ def build_metrics(rows: list[dict[str, str]], registry: dict) -> dict:
 def build_report(metrics: dict) -> str:
     lines = ["# Codex development model usage report", "", "This report summarizes **Codex development model usage only**. It does not describe SpecGuard runtime LLM usage.",
              "Execution counts are record counts; they do not represent token usage, monetary cost, or computational consumption.", "",
+             "`MODEL_METRICS.json` uses schema `specguard-model-metrics` version 1. The same sanitized JSON is emitted to `frontend/public/analytics/model-metrics.json` for static frontend builds.", "",
              "## Recorded activity", "", "| Measure | Count |", "|---|---:|",
              f"| Recorded executions | {metrics['recorded_execution_count']} |", f"| Distinct tasks | {metrics['distinct_task_count']} |",
              f"| Known platform sessions | {metrics['known_platform_session_count']} |", f"| Missing session IDs | {metrics['missing_session_id_count']} |",
@@ -264,7 +269,7 @@ def build_report(metrics: dict) -> str:
     lines += ["", "## Escalations", "", f"Known escalation values: {esc['known_count']}; escalated: {esc['escalated_count']}; unavailable: {esc['missing_count']}.", "",
               "## Resource measurements", "", "| Measure | Available | Missing | Total |", "|---|---:|---:|---:|"]
     for field, values in metrics["resources"].items(): lines.append(f"| {field} | {values['available_count']} | {values['missing_count']} | {values['total'] if values['total'] is not None else 'N/A'} |")
-    lines += ["", "## Timeline records", "", "Chronological execution records are available as structured entries in `MODEL_METRICS.json`; sensitive request content and raw notes are excluded.", ""]
+    lines += ["", "## Timeline records", "", "Chronological, privacy-limited task records are available in `MODEL_METRICS.json`; execution/session IDs, sensitive request content and raw notes are excluded.", ""]
     return "\n".join(lines)
 
 
@@ -273,18 +278,33 @@ def generate_report(csv_path: Path | str = DEFAULT_CSV, registry_path: Path | st
     return build_report(build_metrics(rows, registry))
 
 
+def serialize_metrics(metrics: dict) -> str:
+    """Serialize the public-safe analytics contract in stable UTF-8 JSON."""
+    return json.dumps(metrics, indent=2, ensure_ascii=False, sort_keys=True) + "\n"
+
+
+def write_metrics(metrics: dict, *outputs: Path | str) -> None:
+    payload = serialize_metrics(metrics)
+    for output in outputs:
+        path = Path(output)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(payload, encoding="utf-8", newline="\n")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=DEFAULT_CSV)
     parser.add_argument("--registry", type=Path, default=DEFAULT_REGISTRY)
     parser.add_argument("--output", type=Path, default=DEFAULT_REPORT)
     parser.add_argument("--json-output", type=Path, default=DEFAULT_METRICS)
+    parser.add_argument("--frontend-json-output", type=Path, default=DEFAULT_FRONTEND_METRICS,
+                        help="Sanitized static analytics artifact included in the Next.js public directory")
     args = parser.parse_args()
     rows, registry = read_ledger(args.input, args.registry)
     metrics = build_metrics(rows, registry)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(build_report(metrics), encoding="utf-8", newline="\n")
-    args.json_output.write_text(json.dumps(metrics, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    write_metrics(metrics, args.json_output, args.frontend_json_output)
 
 
 if __name__ == "__main__": main()
